@@ -1,5 +1,9 @@
+#if UNITY_EDITOR
 using UnityEditor.SceneManagement;
+#endif
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -53,8 +57,19 @@ public class GameBoot : MonoBehaviour
             "Assets/Scenes/Entry.unity",
             new LoadSceneParameters(LoadSceneMode.Single));
 #else
-    // StartCoroutine(LoadEntryFromAB());
+    StartCoroutine(LoadEntryFromAB());
 #endif
     }
+    
+    
+    IEnumerator LoadEntryFromAB()
+    {
+        var req = UnityWebRequestAssetBundle.GetAssetBundle(
+            $"{Application.streamingAssetsPath}/entry.ab");
+        yield return req.SendWebRequest();
+        var bundle = DownloadHandlerAssetBundle.GetContent(req); // 先别 Unload
+        yield return SceneManager.LoadSceneAsync("Entry", LoadSceneMode.Single);
+    }
+
 
 }
