@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LoadDll
+public class ProcedureLoadAssembly
 {
-    private static LoadDll _instance;
-
-    public static LoadDll Instance
+    private static ProcedureLoadAssembly _instance;
+    public Action onComplete;
+    public static ProcedureLoadAssembly Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance =  new LoadDll();
+                _instance =  new ProcedureLoadAssembly();
                 return _instance;
             }
             return _instance;
@@ -29,19 +29,18 @@ public class LoadDll
 
     public Assembly HotUpdateAss { get; private set; }
 
-    public void Load()
+    public void Load(Action onComplete)
     {
         if (HotUpdateAss != null) return;
 
-        // Editor环境下，HotUpdate.dll.bytes已经被自动加载，不需要加载，重复加载反而会出问题。
 #if !UNITY_EDITOR
         HotUpdateAss = Assembly.Load(File.ReadAllBytes($"{Application.streamingAssetsPath}/Game.dll.bytes"));
 #else
-        // Editor下无需加载，直接查找获得HotUpdate程序集
         HotUpdateAss = System.AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "Game");
 #endif
-        
-        Type type = HotUpdateAss.GetType("Hello");
-        type.GetMethod("Run").Invoke(null, null);
+        if (onComplete!=null)
+        {
+            onComplete.Invoke();
+        }
     }
 }
