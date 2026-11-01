@@ -17,7 +17,8 @@ public class UIMainview : MonoBehaviour
     
     void OnTestbtnClicked()
     {
-        testText.text = "Hello World";
+        Test t = new Test();
+        testText.text = t.GetTestMsg();
     }
     
     

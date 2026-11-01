@@ -15,17 +15,18 @@ public class GameBoot : MonoBehaviour
     bool running;
     float t;
     void Start()
-    {
-        //1.检查版本，下载最新的dll/资源到presistenDataPath
-        
-        //2.加载 AOT 补充元数据（mscorlib、System、System.Core 的 .dll.bytes）
-        
-        //3.Assembly.Load(Game.dll.bytes)
-        
-        //4.反射调用热更入口
-        
-        ProcedureLoadAssembly.Instance.Load(TestScrollbar);
-        // TestScrollbar();
+    {  
+        //下载是异步的，下载完成后再加载程序集
+        ProcedureGameUpdate.Instance.onComplete = () =>
+        {
+            //2.加载 AOT 补充元数据（mscorlib、System、System.Core 的 .dll.bytes）
+
+            //3.Assembly.Load(Game.dll.bytes)
+
+            //4.反射调用热更入口
+            ProcedureLoadAssembly.Instance.Load(TestScrollbar);
+        };
+        ProcedureGameUpdate.Instance.start();
 
     }
     
