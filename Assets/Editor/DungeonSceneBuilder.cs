@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -6,7 +7,13 @@ public static class DungeonSceneBuilder
 {
     const string ModelDir = "Assets/Artist/Dungeon/Models/";
     const string CharacterDir = "Assets/Artist/Adventurers/Characters/";
-    const string ScenePath = "Assets/Scenes/Dungeon.unity";
+    // 游戏只有 Boot 和 Entry 两个场景，搜打撤地图直接生成在 Entry 里
+    const string ScenePath = "Assets/Scenes/Entry.unity";
+    // 这两个根物体由本脚本生成，重复生成时先删掉，Entry 里其余内容（UI、相机、灯光）不动
+    static readonly string[] GeneratedRoots = { "Dungeon", "Player", "EntryFlow" };
+
+    // 菜单阶段的总览镜头：从南侧高处俯看整个房间
+    static readonly Vector3 OverviewPosition = new Vector3(0f, 45f, -30f);
     const string ZoneMatPath = "Assets/Artist/Dungeon/ExtractionZone.mat";
 
     // 房间边长48：8x8块6米地砖，每边12段4米长的墙
@@ -19,7 +26,8 @@ public static class DungeonSceneBuilder
     {
         if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
 
-        EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
+        var scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
+        ClearGenerated(scene);
 
         var root = new GameObject("Dungeon").transform;
         var floor = NewGroup("Floor", root);
@@ -31,11 +39,20 @@ public static class DungeonSceneBuilder
         BuildProps(props);
         BuildExtractionZone(root);
         var player = BuildPlayer();
-        SetupCamera(player.transform);
+        var follow = SetupCamera(player.transform);
         SetupLight();
+        SetupEntryFlow(player, follow);
 
-        EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene(), ScenePath);
-        Debug.Log($"[Dungeon] 场景已生成：{ScenePath}");
+        EditorSceneManager.SaveScene(scene, ScenePath);
+        Debug.Log($"[Dungeon] 地图已生成到 {ScenePath}");
+    }
+
+    static void ClearGenerated(UnityEngine.SceneManagement.Scene scene)
+    {
+        foreach (var go in scene.GetRootGameObjects())
+        {
+            if (System.Array.IndexOf(GeneratedRoots, go.name) >= 0) Object.DestroyImmediate(go);
+        }
     }
 
     static void BuildFloor(Transform parent)
@@ -173,24 +190,58 @@ public static class DungeonSceneBuilder
         return player;
     }
 
-    static void SetupCamera(Transform target)
+    static TopDownCamera SetupCamera(Transform target)
     {
-        var cam = Camera.main;
-        if (cam == null) return;
+        var cam = Camera.main != null ? Camera.main : Object.FindFirstObjectByType<Camera>();
+        if (cam == null)
+        {
+            Debug.LogError("[Dungeon] Entry 场景里没有相机");
+            return null;
+        }
 
-        var follow = cam.gameObject.AddComponent<TopDownCamera>();
+        // Entry 里的相机是复用的，已经挂过跟随脚本就不重复添加
+        var follow = cam.GetComponent<TopDownCamera>();
+        if (follow == null) follow = cam.gameObject.AddComponent<TopDownCamera>();
         follow.target = target;
-        cam.transform.position = target.position + follow.offset;
-        cam.transform.rotation = Quaternion.LookRotation(-follow.offset);
+
+        // 一进场景先停在总览位置，点开始按钮后由 EntryFlow 启用跟随
+        cam.transform.position = OverviewPosition;
+        cam.transform.rotation = Quaternion.LookRotation(Vector3.zero - OverviewPosition);
+        return follow;
+    }
+
+    // 菜单到玩法的过渡：按钮、菜单淡出、镜头和玩家都交给 EntryFlow 控制
+    static void SetupEntryFlow(GameObject player, TopDownCamera follow)
+    {
+        var view = Object.FindObjectsByType<UIMainview>(FindObjectsSortMode.None).FirstOrDefault(v => v.testBtn != null);
+        var canvas = view != null ? view.GetComponentInParent<Canvas>() : null;
+        if (view == null || canvas == null || follow == null)
+        {
+            Debug.LogError("[Dungeon] 找不到带按钮的 UIMainview、Canvas 或相机，没有生成 EntryFlow");
+            return;
+        }
+
+        var group = canvas.GetComponent<CanvasGroup>();
+        if (group == null) group = canvas.gameObject.AddComponent<CanvasGroup>();
+
+        var flow = new GameObject("EntryFlow").AddComponent<EntryFlow>();
+        flow.startButton = view.testBtn;
+        flow.menuGroup = group;
+        flow.player = player.GetComponent<PlayerController>();
+        flow.followCamera = follow;
     }
 
     static void SetupLight()
     {
-        var light = Object.FindFirstObjectByType<Light>();
-        if (light == null || light.type != LightType.Directional) return;
+        // 火把的点光源也是 Light，所以要专门找方向光
+        foreach (var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
+        {
+            if (light.type != LightType.Directional) continue;
 
-        light.transform.rotation = Quaternion.Euler(50f, -30f, 0f);
-        light.intensity = 0.8f;
+            light.transform.rotation = Quaternion.Euler(50f, -30f, 0f);
+            light.intensity = 0.8f;
+            return;
+        }
     }
 
     // 摆件位置按房间放大倍数拉开，y（高度）不放大，模型本身也不放大
