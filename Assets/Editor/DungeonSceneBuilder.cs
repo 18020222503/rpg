@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -42,6 +41,8 @@ public static class DungeonSceneBuilder
         var follow = SetupCamera(player.transform);
         SetupLight();
         SetupEntryFlow(player, follow);
+        // UIRoot 已经存在就不动，换过美术的界面不会被地图重新生成冲掉
+        EntryUIBuilder.Apply(scene, false);
 
         EditorSceneManager.SaveScene(scene, ScenePath);
         Debug.Log($"[Dungeon] 地图已生成到 {ScenePath}");
@@ -210,23 +211,16 @@ public static class DungeonSceneBuilder
         return follow;
     }
 
-    // 菜单到玩法的过渡：按钮、菜单淡出、镜头和玩家都交给 EntryFlow 控制
+    // 菜单到玩法的过渡：开始界面由 UIManager 管，镜头和玩家交给 EntryFlow 控制
     static void SetupEntryFlow(GameObject player, TopDownCamera follow)
     {
-        var view = Object.FindObjectsByType<UIMainview>(FindObjectsSortMode.None).FirstOrDefault(v => v.testBtn != null);
-        var canvas = view != null ? view.GetComponentInParent<Canvas>() : null;
-        if (view == null || canvas == null || follow == null)
+        if (follow == null)
         {
-            Debug.LogError("[Dungeon] 找不到带按钮的 UIMainview、Canvas 或相机，没有生成 EntryFlow");
+            Debug.LogError("[Dungeon] 找不到相机，没有生成 EntryFlow");
             return;
         }
 
-        var group = canvas.GetComponent<CanvasGroup>();
-        if (group == null) group = canvas.gameObject.AddComponent<CanvasGroup>();
-
         var flow = new GameObject("EntryFlow").AddComponent<EntryFlow>();
-        flow.startButton = view.testBtn;
-        flow.menuGroup = group;
         flow.player = player.GetComponent<PlayerController>();
         flow.followCamera = follow;
     }
