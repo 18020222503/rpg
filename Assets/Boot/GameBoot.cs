@@ -70,16 +70,19 @@ public class GameBoot : MonoBehaviour
 
     public void SwitchScene()
     {
+        if (BootConfig.UseBundle)
+        {
+            StartCoroutine(LoadEntryFromAB());
+            return;
+        }
 #if UNITY_EDITOR
         EditorSceneManager.LoadSceneAsyncInPlayMode(
             EntryScenePath,
             new LoadSceneParameters(LoadSceneMode.Single));
-#else
-    StartCoroutine(LoadEntryFromAB());
 #endif
     }
 
-    // 场景 bundle 已经由 ProcedureGameUpdate 下载到 persistentDataPath。
+    // 场景 bundle 已经由 ProcedureGameUpdate 下载到 BootConfig.CacheDir。
     // 必须在 Game.dll 加载之后再加载场景，否则场景里的热更脚本会丢失
     IEnumerator LoadEntryFromAB()
     {

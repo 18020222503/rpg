@@ -18,12 +18,25 @@ public class ProcedureGameUpdate
     // 由调用方用 StartCoroutine 驱动，这个类本身不是 MonoBehaviour
     public IEnumerator Run()
     {
+        // 编辑器直读模式：资源直接从工程里加载，不需要下载
+        if (BootConfig.SkipDownload)
+        {
+            onProgress?.Invoke(1f, 0, 0);
+            onComplete?.Invoke();
+            yield break;
+        }
+
+        Directory.CreateDirectory(BootConfig.CacheDir);
+
         // 1.下载远端清单
         string json = null;
         string error = null;
         yield return DownloadText(BundleManifest.FileName, (text, err) => { json = text; error = err; });
         if (error != null)
         {
+#if UNITY_EDITOR
+            error += "\n请先执行 Tools/Hotdate/BuildHotUpdateBundle";
+#endif
             Fail(error);
             yield break;
         }
@@ -78,10 +91,10 @@ public class ProcedureGameUpdate
 
     public static string GetLocalPath(string bundleName)
     {
-        return Path.Combine(Application.persistentDataPath, bundleName);
+        return Path.Combine(BootConfig.CacheDir, bundleName);
     }
 
-    private static string GetUrl(string name) => $"http://{BootConfig.CDN}/{name}";
+    private static string GetUrl(string name) => $"{BootConfig.BaseUrl}/{name}";
 
     private void Fail(string error)
     {

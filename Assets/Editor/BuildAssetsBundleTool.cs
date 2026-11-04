@@ -8,10 +8,8 @@ using UnityEngine;
 
 public static class BuildAssetBundleTool
 {
-    //bundle输出目录名，位于项目根目录（Assets 的上一层）
     const string OutputDirName = "AssetBundle";
 
-    //bundle 只能打包 Assets 内的资源，所以把 Game.dll 以 .bytes 形式暂存到这个目录
     const string DllAssetDir = "Assets/HotUpdateDlls";
     const string DllAssetPath = DllAssetDir + "/Game.dll.bytes";
     const string EntryScenePath = "Assets/Scenes/Entry.unity";
