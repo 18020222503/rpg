@@ -1,0 +1,43 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.3.27f1
+CRC: 3161068831
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 700943e9b3525c4159478cd51f0597c8
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 7eb279adf002335951028476972c875d
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: fb6b2e89b87b2472fe931aa27e3c60af
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.RenderingLayerMask
+Assets:
+- Assets/GameResource/Prefab/map/Dungeon-no-wall.prefab
+Dependencies: []

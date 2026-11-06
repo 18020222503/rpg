@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using UnityEditor;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public static class BuildAssetBundleTool
@@ -20,67 +21,67 @@ public static class BuildAssetBundleTool
         return Path.Combine(projectRoot, OutputDirName, target.ToString());
     }
 
-    //把 Game.dll 和 Entry 场景打成 bundle，输出到 AssetBundle/{平台}，并生成 bundles.json 清单
-    [MenuItem("Tools/Hotdate/BuildHotUpdateBundle", priority = 2)]
-    public static void BuildBundles()
+    #region 打AB
+    [MenuItem("Tools/CreateABTag", priority = 3)]
+    public static void CreateABTag()
     {
-        BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
-        string projectRoot = Path.GetDirectoryName(Application.dataPath);
-        string outDir = GetOutputDir(target);
-        Directory.CreateDirectory(outDir);
-
-        string srcPath = Path.Combine(SettingsUtil.GetHotUpdateDllsOutputDirByTarget(target), "Game.dll");
-        if (!File.Exists(srcPath))
+        //清除所有旧标签，forceRemove=true 会把仍在使用的名字也从资源上摘掉
+        foreach (var name in AssetDatabase.GetAllAssetBundleNames())
         {
-            Debug.LogError($"[AssetBundle] 找不到 {srcPath}，请先执行 Tools/Hotdate/GenerateHotUpdateDll");
-            return;
+            AssetDatabase.RemoveAssetBundleName(name, true);
         }
- 
-        Directory.CreateDirectory(Path.Combine(projectRoot, DllAssetDir));
-        File.Copy(srcPath, Path.Combine(projectRoot, DllAssetPath), true);
-        AssetDatabase.ImportAsset(DllAssetPath);
-
-        // 场景引用的材质、模型等没有单独列出的资源，会被隐式打进 entry.ab。
-        // 目前只有一个场景 bundle，不会重复；以后再加 bundle 时需要把公共资源拆出来
-        var builds = new[]
-        {
-            new AssetBundleBuild
+        //创建AB标签
+        string assetPath = "Assets/GameResource";
+        if (Directory.Exists(assetPath))
+        {       
+            string[] files = Directory.GetFiles(assetPath,"*", SearchOption.AllDirectories);
+            foreach (var file in files)
             {
-                assetBundleName = ProcedureLoadAssembly.DllBundleName,
-                assetNames = new[] { DllAssetPath },
-            },
-            new AssetBundleBuild
-            {
-                assetBundleName = GameBoot.EntryBundleName,
-                assetNames = new[] { EntryScenePath },
-            },
-        };
-
-        var abManifest = BuildPipeline.BuildAssetBundles(outDir, builds,
-            BuildAssetBundleOptions.ChunkBasedCompression, target);
-        if (abManifest == null)
-        {
-            Debug.LogError("[AssetBundle] 打包失败，详见上面的 Console 日志");
-            return;
+                if (file.EndsWith(".meta")||file.EndsWith(".cs"))
+                {
+                    continue;
+                }
+                string path = file.Replace("\\", "/");
+                AssetImporter importer = AssetImporter.GetAtPath(path);
+                Debug.Log("file:" + path.ToString());
+                if (importer != null)
+                {
+                    string realPath = GenerateBundleNameFromPath(path);
+                    Debug.Log("realPath:" + realPath);
+                    importer.assetBundleName =realPath;
+                }
+            }
         }
-
-        var manifest = new BundleManifest();
-        foreach (var build in builds)
-        {
-            var name = build.assetBundleName;
-            manifest.bundles.Add(new BundleInfo
-            {
-                name = name,
-                hash = abManifest.GetAssetBundleHash(name).ToString(),
-                size = new FileInfo(Path.Combine(outDir, name)).Length,
-            });
-        }
-        File.WriteAllText(Path.Combine(outDir, BundleManifest.FileName), JsonUtility.ToJson(manifest, true));
-
-        Debug.Log($"[AssetBundle] 已输出到 {outDir}：{string.Join(", ", manifest.bundles.Select(b => b.name))}");
+        AssetDatabase.RemoveUnusedAssetBundleNames();
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
     }
 
-    //通过 FTP 把 bundle 和清单上传到宝塔站点目录，之后可通过 http://{BootConfig.CDN}/{文件名} 下载
+    private static string GenerateBundleNameFromPath(string path)
+    {
+        if (path.StartsWith("Assets/"))
+            path = path.Substring("Assets/".Length);
+        return Path.ChangeExtension(path, null).ToLower();
+    }
+
+    [MenuItem("Tools/BuildAB", priority = 2)]
+    public static void BuildBundles()
+    {
+        string assetBundleDirectory = "Assets/AssetBundles";
+        if(!Directory.Exists(assetBundleDirectory))
+        {
+            Directory.CreateDirectory(assetBundleDirectory);
+        }
+        BuildPipeline.BuildAssetBundles(assetBundleDirectory, 
+            BuildAssetBundleOptions.None, 
+            BuildTarget.StandaloneWindows);
+    }
+
+    #endregion
+
+
+    #region 上传资源至CDN
+
     [MenuItem("Tools/Hotdate/PublishToCDN", priority = 3)]
     public static void PublishToCdn()
     {
@@ -147,4 +148,7 @@ public static class BuildAssetBundleTool
             Debug.Log($"[AssetBundle] 已上传到 {uri}，{resp.StatusDescription}");
         }
     }
+
+    #endregion
+
 }

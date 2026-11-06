@@ -1,0 +1,43 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.3.27f1
+CRC: 1624785680
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7eb7ea2c3ea22f2d7db6c388fa1ea78c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 7eb279adf002335951028476972c875d
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: c0456aa0255b8d3cf5bb41de592a48b3
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.RenderingLayerMask
+Assets:
+- Assets/GameResource/Prefab/map/Dungeon.prefab
+Dependencies: []

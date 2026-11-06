@@ -10,7 +10,7 @@ public class GameBoot : MonoBehaviour
     //场景所在的bundle名和场景路径，和打包工具 BuildAssetBundleTool 里的一致
     public const string EntryBundleName = "entry.ab";
     const string EntryScenePath = "Assets/Scenes/Entry.unity";
-
+   
     public BootProgressView view;
 
     // 下载完、程序集加载完，等进度条走满后再切场景

@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.3.27f1
+CRC: 1336447394
+HashAppended: 0
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: gameresource/material/material2
+      Dependencies: {}
+    Info_1:
+      Name: gameresource/prefab/map/dungeon-no-wall
+      Dependencies: {}
+    Info_2:
+      Name: gameresource/prefab/map/dungeon
+      Dependencies: {}
+    Info_3:
+      Name: gameresource/prefab/test/test1
+      Dependencies:
+        Dependency_0: gameresource/material/material2
+    Info_4:
+      Name: gameresource/prefab/test/test2
+      Dependencies:
+        Dependency_0: gameresource/material/material2

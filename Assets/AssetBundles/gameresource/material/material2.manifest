@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.3.27f1
+CRC: 4232055585
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 5d7bef7968831a6979dda55c93b45711
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 74616c350bac436be9c6560c196b91ae
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 6eadf973c5e1adfbf31cc92c206af533
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/GameResource/Material/material2.mat
+Dependencies: []

@@ -1,0 +1,32 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.3.27f1
+CRC: 2096451936
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 24d5ddf8f1fd207c159bb5d1d34696da
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9e2a7c255488f5507f5569f5c37c65a5
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 20ff65cf3fa5404871289da9196754fa
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/GameResource/Prefab/test/test1.prefab
+Dependencies:
+- E:/study/rpg/rpg/Assets/AssetBundles/gameresource/material/material2
