@@ -27,6 +27,7 @@ public class EntryFlow : MonoBehaviour
 
         var panel = UIManager.Instance.Open<UIStartPanel>();
         if (panel != null) panel.onStart += StartGameplay;
+        if (panel != null) panel.onStart1 += LoadScene;
     }
 
     public void StartGameplay()
@@ -34,6 +35,14 @@ public class EntryFlow : MonoBehaviour
         if (started) return;
         started = true;
         StartCoroutine(Transition());
+    }
+
+    public void LoadScene()
+    {
+        var sceneName = "dungeon";
+        ResourceManager.Instance.Init(); 
+         var prefab =  ResourceManager.Instance.LoadAsset<GameObject>(sceneName);
+         Instantiate(prefab);
     }
 
     IEnumerator Transition()
