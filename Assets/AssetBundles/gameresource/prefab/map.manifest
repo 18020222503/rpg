@@ -1,16 +1,16 @@
 ManifestFileVersion: 0
 UnityVersion: 6000.3.27f1
-CRC: 3161068831
+CRC: 905904976
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 700943e9b3525c4159478cd51f0597c8
+    Hash: 98955777495132cfb488fad3d0412e5f
   TypeTreeHash:
     serializedVersion: 2
     Hash: 7eb279adf002335951028476972c875d
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: fb6b2e89b87b2472fe931aa27e3c60af
+    Hash: 39969c909b8095ac676f5d4259a42c31
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -40,4 +40,5 @@ SerializeReferenceClassIdentifiers:
   ClassName: UnityEngine.RenderingLayerMask
 Assets:
 - Assets/GameResource/Prefab/map/Dungeon-no-wall.prefab
+- Assets/GameResource/Prefab/map/Dungeon.prefab
 Dependencies: []

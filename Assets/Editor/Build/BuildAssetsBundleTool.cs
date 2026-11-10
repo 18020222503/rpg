@@ -43,12 +43,11 @@ public static class BuildAssetBundleTool
                 }
                 string path = file.Replace("\\", "/");
                 AssetImporter importer = AssetImporter.GetAtPath(path);
-                Debug.Log("file:" + path.ToString());
                 if (importer != null)
                 {
-                    string realPath = GenerateBundleNameFromPath(path);
-                    Debug.Log("realPath:" + realPath);
-                    importer.assetBundleName =realPath;
+                    string bundleName = GenerateBundleNameFromPath(path);
+                    Debug.Log($"file:{path} -> bundle:{bundleName}");
+                    importer.assetBundleName = bundleName;
                 }
             }
         }
@@ -57,11 +56,14 @@ public static class BuildAssetBundleTool
         AssetDatabase.Refresh();
     }
 
+    // 按所在文件夹命名：Assets/GameResource/prefab/map/a.prefab -> gameresource/prefab/map
+    // 同一文件夹下的文件共用一个标签（Unity 会把 AB 名统一转成小写）
     private static string GenerateBundleNameFromPath(string path)
     {
-        if (path.StartsWith("Assets/"))
-            path = path.Substring("Assets/".Length);
-        return Path.ChangeExtension(path, null).ToLower();
+        string dir = Path.GetDirectoryName(path).Replace("\\", "/");
+        if (dir.StartsWith("Assets/"))
+            dir = dir.Substring("Assets/".Length);
+        return dir.ToLower();
     }
 
     [MenuItem("Tools/BuildAB", priority = 2)]

@@ -39,10 +39,11 @@ public class EntryFlow : MonoBehaviour
 
     public void LoadScene()
     {
-        var sceneName = "dungeon";
+        var sceneName = "Prefab/map/Dungeon.prefab";
         ResourceManager.Instance.Init(); 
          var prefab =  ResourceManager.Instance.LoadAsset<GameObject>(sceneName);
          Instantiate(prefab);
+         
     }
 
     IEnumerator Transition()

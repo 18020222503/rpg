@@ -35,6 +35,7 @@
 *.unitypackage
 *.app
 /AssetBundle/
+/AssetBundleCompare/
 /Assets/HotUpdateDlls/
 /Assets/HotUpdateDlls.meta
 

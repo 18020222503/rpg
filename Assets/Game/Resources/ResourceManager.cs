@@ -11,8 +11,8 @@ using UnityEditor;
 // assetName 相对 Assets/GameResource 并带后缀，如 "Prefab/test/test1.prefab"
 public class ResourceManager
 {
-    // const string AssetRoot = "Assets/GameResource/";
-    
+    const string AssetRoot = "Assets/GameResource/";
+
     const string ManifestBundleName = "AssetBundles";
     private static ResourceManager instance;
     public static ResourceManager Instance => instance ??= new ResourceManager();
@@ -49,12 +49,13 @@ public class ResourceManager
       {    
           Debug.Log(item);
       }
+      mainfestAb.Unload(false);
     }
 
     public T LoadAsset<T>(string assetName) where T : UnityEngine.Object
     {
         // string assetPath = AssetRoot + assetName;
-        Debug.logger.Log(assetName);
+        Debug.unityLogger.Log(assetName);
         if (manifest == null)
         {
             return null;
@@ -68,7 +69,9 @@ public class ResourceManager
         }
 
         var bundle = LoadBundle(bundleName);
-        return bundle.LoadAsset<T>(assetName);
+        if (bundle == null) return null;
+        // bundle 内的资源名是完整工程路径
+        return bundle.LoadAsset<T>(AssetRoot + assetName);
     }
     
     AssetBundle LoadBundle(string bundleName)
@@ -85,9 +88,11 @@ public class ResourceManager
         return bundle;
     }
     
+    // 与 CreateABTag 保持一致：bundle 名 = 资源所在文件夹，如 "Prefab/map/Dungeon.prefab" -> "gameresource/prefab/map"
     static string GetBundleName(string assetName)
     {
-        return ("gameresource/prefab/map/" + Path.ChangeExtension(assetName, null)).ToLower();
+        string dir = Path.GetDirectoryName(assetName).Replace("\\", "/");
+        return ("gameresource/" + dir).ToLower();
     }
     
     IEnumerator LoadBundleFileAsync(string bundleName)
@@ -100,5 +105,99 @@ public class ResourceManager
             yield break;
         } 
     }
+
+
+    #region 测试代码
+
+    // 对比 LoadFromFile（只打开 bundle）和 LoadAsset（从 bundle 里取出具体资源）的耗时与内存。
+    // 调用前先执行 Init()，例如在 EntryFlow.LoadScene 里：
+    //   ResourceManager.Instance.Init();
+    //   ResourceManager.Instance.TestLoadFromFileVsLoadAsset("Prefab/map/Dungeon.prefab");
+    public void TestLoadFromFileVsLoadAsset(string assetName)
+    {
+        if (!RunLoadTest(assetName, out var r)) return;
+        Debug.Log($"[Test] 1.LoadFromFile  耗时 {r.loadBundleMs:F2} ms，内存 +{r.loadBundleKB:F1} KB");
+        Debug.Log($"[Test]    bundle 内资源：{string.Join(", ", r.assetNames)}");
+        Debug.Log($"[Test] 2.LoadAsset(首次) 耗时 {r.loadAssetMs:F2} ms，内存 +{r.loadAssetKB:F1} KB");
+        Debug.Log($"[Test] 3.LoadAsset(再次) 耗时 {r.loadAssetAgainMs:F2} ms，内存 +{r.loadAssetAgainKB:F1} KB，是同一对象：{r.sameInstance}");
+    }
+
+    public bool IsInitialized => manifest != null;
+
+    public struct LoadTestResult
+    {
+        public double loadBundleMs, loadAssetMs, loadAssetAgainMs;
+        public float loadBundleKB, loadAssetKB, loadAssetAgainKB;
+        public bool sameInstance;
+        public string[] assetNames;
+    }
+
+    // 测一次完整流程：LoadFromFile -> LoadAsset -> 再次 LoadAsset，最后 Unload(true) 还原现场，可重复调用
+    public bool RunLoadTest(string assetName, out LoadTestResult result)
+    {
+        result = default;
+        if (manifest == null)
+        {
+            Debug.LogError("[Test] 请先调用 Init()");
+            return false;
+        }
+
+        string bundleName = GetBundleName(assetName);
+
+        // 依赖包走缓存加载，不计入测试
+        foreach (var dep in manifest.GetAllDependencies(bundleName))
+        {
+            LoadBundle(dep);
+        }
+
+        // 同一个 bundle 不能加载两次，缓存里已有就先卸掉，保证从零开始测
+        if (bundles.TryGetValue(bundleName, out var cached))
+        {
+            cached.Unload(true);
+            bundles.Remove(bundleName);
+        }
+
+        var sw = new System.Diagnostics.Stopwatch();   //创建计时器
+        long mem0 = UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong();
+
+        // 1. LoadFromFile：只打开 bundle，读文件头和资源目录，不创建任何资源对象
+        sw.Restart();
+        var bundle = AssetBundle.LoadFromFile(Path.Combine(BundleRoot, bundleName));
+        sw.Stop();
+        if (bundle == null)
+        {
+            Debug.LogError($"[Test] LoadFromFile 失败：{bundleName}");
+            return false;
+        }
+        long mem1 = UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong();
+        result.loadBundleMs = sw.Elapsed.TotalMilliseconds;
+        result.loadBundleKB = (mem1 - mem0) / 1024f;
+        result.assetNames = bundle.GetAllAssetNames();
+
+        // 2. 第一次 LoadAsset：从 bundle 读出数据并反序列化成 Object
+        string fullPath = AssetRoot + assetName;
+        sw.Restart();
+        var asset = bundle.LoadAsset<UnityEngine.Object>(fullPath);
+        sw.Stop();
+        long mem2 = UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong();
+        result.loadAssetMs = sw.Elapsed.TotalMilliseconds;
+        result.loadAssetKB = (mem2 - mem1) / 1024f;
+        if (asset == null) Debug.LogError($"[Test] LoadAsset 返回 null：{fullPath}");
+
+        // 3. 第二次 LoadAsset：资源已在内存，直接返回同一个对象
+        sw.Restart();
+        var asset2 = bundle.LoadAsset<UnityEngine.Object>(fullPath);
+        sw.Stop();
+        long mem3 = UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong();
+        result.loadAssetAgainMs = sw.Elapsed.TotalMilliseconds;
+        result.loadAssetAgainKB = (mem3 - mem2) / 1024f;
+        result.sameInstance = ReferenceEquals(asset, asset2);
+
+        // 4. Unload(true) 连已加载的资源一起销毁，下一轮才是从零开始
+        bundle.Unload(true);
+        return true;
+    }
+
+    #endregion
 
 }
