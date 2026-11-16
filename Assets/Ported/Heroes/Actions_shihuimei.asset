@@ -1,0 +1,702 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62313c6b0efa47b2949e5d64349c54fb, type: 3}
+  m_Name: Actions_shihuimei
+  m_EditorClassIdentifier: Ported.Runtime:Ported:HeroActionSet
+  heroId: 11003
+  sockets:
+  - name: center
+    bone: Bip001 Spine
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: base
+    bone: character_root
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: spskill
+    bone: Bip001 L Hand
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: youshou
+    bone: Bip001 R Hand
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: zuoshou
+    bone: Bip001 L Hand
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: catchchest
+    bone: Bip001 Spine
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: chest_1_
+    bone: Bip001 Neck
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: nini_base
+    bone: Bone_058
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: hud
+    bone: character_root
+    pos: {x: 0, y: 1.8, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: line
+    bone: Bip001 Head
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: damage
+    bone: character_root
+    pos: {x: 0, y: 1.5, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: shieldLayer
+    bone: character_root
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: SandWitch01_
+    bone: Bone019
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  combo:
+  - id: 5001
+    clip: atk01
+    duration: 1.767
+    breakTime: 0.667
+    nextId: 5002
+    comboStart: 0
+    comboEnd: 1.2
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_nini_idle_f_loop.prefab
+      prefab: {fileID: 4475316612162705590, guid: d28aa92239037d241b49dc7a6290f472, type: 3}
+      socket: nini_base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.034
+      end: 1.667
+      follow: 1
+      disappear: 0
+      softDel: 0.2
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk01.prefab
+      prefab: {fileID: 7729560140267060148, guid: 65253a890f457aa4c9bde25ad8ff401c, type: 3}
+      socket: base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.134
+      end: 2.167
+      follow: 0
+      disappear: 2
+      softDel: 0.05
+      speed: 1
+    hits: []
+    bullets:
+    - start: 0.234
+      emitter: 1000
+    moves: []
+    speeds: []
+  - id: 5002
+    clip: atk02
+    duration: 1.634
+    breakTime: 1
+    nextId: 5003
+    comboStart: 0
+    comboEnd: 1.534
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_nini_idle_f_loop.prefab
+      prefab: {fileID: 4475316612162705590, guid: d28aa92239037d241b49dc7a6290f472, type: 3}
+      socket: nini_base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.034
+      end: 1.667
+      follow: 1
+      disappear: 0
+      softDel: 0
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk02.prefab
+      prefab: {fileID: 2972571736063569972, guid: 3f2e5c330de010944b8305f9365bff46, type: 3}
+      socket: base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.067
+      end: 3
+      follow: 0
+      disappear: 0
+      softDel: 0
+      speed: 1
+    hits: []
+    bullets:
+    - start: 0.167
+      emitter: 1010
+    moves: []
+    speeds: []
+  - id: 5003
+    clip: atk03
+    duration: 2.2
+    breakTime: 0.5
+    nextId: 5004
+    comboStart: 0.5
+    comboEnd: 22.2
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_nini_idle_f_loop.prefab
+      prefab: {fileID: 4475316612162705590, guid: d28aa92239037d241b49dc7a6290f472, type: 3}
+      socket: nini_base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.334
+      end: 1.667
+      follow: 1
+      disappear: 0
+      softDel: 0
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk03.prefab
+      prefab: {fileID: 3071668311752194676, guid: fca0af6a336108d40a78f2cc4e5c516c, type: 3}
+      socket: base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.334
+      end: 3
+      follow: 0
+      disappear: 0
+      softDel: 0
+      speed: 1
+    hits: []
+    bullets:
+    - start: 0.534
+      emitter: 1030
+    moves: []
+    speeds: []
+  - id: 5004
+    clip: atk04
+    duration: 4.134
+    breakTime: 1.334
+    nextId: 0
+    comboStart: 0
+    comboEnd: 0
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk04_01.prefab
+      prefab: {fileID: 3016635023623624576, guid: 71e175a01f0a392499b156292adef5ce, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: 1.5}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.734
+      end: 3
+      follow: 0
+      disappear: 2
+      softDel: 0
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk04_nini_bone58.prefab
+      prefab: {fileID: 1514952721559695260, guid: 08937306d1f62de4c8a09ac1f6de43bc, type: 3}
+      socket: nini_base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.734
+      end: 3
+      follow: 1
+      disappear: 3
+      softDel: 0.2
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk04_02.prefab
+      prefab: {fileID: 2425375267480826602, guid: cbd98c22dcb5970428bb842e9cf508a1, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: 3}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.9
+      end: 3
+      follow: 0
+      disappear: 2
+      softDel: 0
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk04_03.prefab
+      prefab: {fileID: 3420573557355594808, guid: d4663316ff2b8b7428c9d93bce40d518, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: 5}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 1.034
+      end: 3
+      follow: 0
+      disappear: 2
+      softDel: 0
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk04_01.prefab
+      prefab: {fileID: 3016635023623624576, guid: 71e175a01f0a392499b156292adef5ce, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: 6.5}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 1.167
+      end: 3
+      follow: 0
+      disappear: 2
+      softDel: 0
+      speed: 1
+    hits:
+    - start: 0.734
+      end: 0.834
+      shape: 1
+      pos: {x: 0, y: 1, z: 1.5}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 2, y: 3, z: 2}
+      radius: 0.5
+      height: 1
+      damageMul: 0
+      maxHits: 1
+      interval: 0
+      hitFx: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_hit03.prefab
+      hitFxPrefab: {fileID: 6467582623984667602, guid: cf59d1f95252e74489d5b00f52f11791, type: 3}
+      hitFxScale: 1
+    - start: 0.9
+      end: 1
+      shape: 1
+      pos: {x: 0, y: 1, z: 3}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 2, y: 3, z: 2}
+      radius: 0.5
+      height: 1
+      damageMul: 0
+      maxHits: 1
+      interval: 0
+      hitFx: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_hit03.prefab
+      hitFxPrefab: {fileID: 6467582623984667602, guid: cf59d1f95252e74489d5b00f52f11791, type: 3}
+      hitFxScale: 1
+    - start: 1.034
+      end: 1.134
+      shape: 1
+      pos: {x: 0, y: 1, z: 4.5}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 2, y: 3, z: 2}
+      radius: 0.5
+      height: 1
+      damageMul: 0
+      maxHits: 1
+      interval: 0
+      hitFx: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_hit03.prefab
+      hitFxPrefab: {fileID: 6467582623984667602, guid: cf59d1f95252e74489d5b00f52f11791, type: 3}
+      hitFxScale: 1
+    - start: 1.167
+      end: 1.267
+      shape: 1
+      pos: {x: 0, y: 1, z: 6}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 2, y: 3, z: 2}
+      radius: 0.5
+      height: 1
+      damageMul: 0
+      maxHits: 1
+      interval: 0
+      hitFx: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_hit03.prefab
+      hitFxPrefab: {fileID: 6467582623984667602, guid: cf59d1f95252e74489d5b00f52f11791, type: 3}
+      hitFxScale: 1
+    bullets: []
+    moves: []
+    speeds: []
+  heavy:
+    id: 5101
+    clip: atk_c
+    duration: 3.867
+    breakTime: 2.334
+    nextId: 0
+    comboStart: 0
+    comboEnd: 0
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk_c.prefab
+      prefab: {fileID: 439817048191389651, guid: db3826fa5c5cdde498a23e944f0bde5d, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: -0.2}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.034
+      end: 2.567
+      follow: 0
+      disappear: 3
+      softDel: 0.1
+      speed: 1
+    hits: []
+    bullets:
+    - start: 0.434
+      emitter: 1300
+    moves: []
+    speeds: []
+  skill1:
+    id: 5401
+    clip: skill01
+    duration: 3.967
+    breakTime: 1.334
+    nextId: 0
+    comboStart: 0
+    comboEnd: 0
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_nini_idle_f_loop.prefab
+      prefab: {fileID: 4475316612162705590, guid: d28aa92239037d241b49dc7a6290f472, type: 3}
+      socket: nini_base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.034
+      end: 1.534
+      follow: 1
+      disappear: 0
+      softDel: 0
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_skill01.prefab
+      prefab: {fileID: 2022231365317323770, guid: ec7a2197d8ddc8c4a9a59a3ef711217a, type: 3}
+      socket: base
+      pos: {x: 0, y: 0, z: 0.5}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.067
+      end: 2
+      follow: 0
+      disappear: 0
+      softDel: 0
+      speed: 1
+    hits:
+    - start: 0.5
+      end: 2
+      shape: 3
+      pos: {x: 0, y: 1, z: 0.1}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 1, y: 1, z: 1}
+      radius: 10
+      height: 2
+      damageMul: 0
+      maxHits: 1
+      interval: 0
+      hitFx: 
+      hitFxPrefab: {fileID: 0}
+      hitFxScale: 1
+    bullets: []
+    moves: []
+    speeds: []
+  skill2:
+    id: 5501
+    clip: skill02
+    duration: 5.7
+    breakTime: 2.834
+    nextId: 0
+    comboStart: 0
+    comboEnd: 0
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_skill02.prefab
+      prefab: {fileID: 2329240280245619035, guid: ad8837ccff1fdad4d9eb8fc5de420a1d, type: 3}
+      socket: 
+      pos: {x: 0, y: 0.1, z: 0.4}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.067
+      end: 5
+      follow: 1
+      disappear: 0
+      softDel: 0.05
+      speed: 1.3
+    hits:
+    - start: 0.334
+      end: 1.4
+      shape: 1
+      pos: {x: 0, y: 1, z: 3.5}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 3, y: 3, z: 7}
+      radius: 0.5
+      height: 1
+      damageMul: 0
+      maxHits: 6
+      interval: 0.0002
+      hitFx: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_skill02_hit02.prefab
+      hitFxPrefab: {fileID: 1515877421136377483, guid: 816ed9a92baeb6347aa461af9617bfa0, type: 3}
+      hitFxScale: 1
+    - start: 1.5
+      end: 1.7
+      shape: 3
+      pos: {x: 0, y: 1, z: 3.5}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 1, y: 1, z: 1}
+      radius: 1
+      height: 1
+      damageMul: 0
+      maxHits: 1
+      interval: 0
+      hitFx: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_skill02_hit01.prefab
+      hitFxPrefab: {fileID: 7616070038822313778, guid: d5d24759fbc14554dbbb48cb079ac7d3, type: 3}
+      hitFxScale: 1
+    bullets: []
+    moves: []
+    speeds: []
+  ultimate:
+    id: 6001
+    clip: skill_ex
+    duration: 4.367
+    breakTime: 2.334
+    nextId: 0
+    comboStart: 0
+    comboEnd: 0
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_skill_ex01_02.prefab
+      prefab: {fileID: 4345225410888996310, guid: 47815430f89901f44adf131d55cdc820, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0
+      end: 2.034
+      follow: 1
+      disappear: 0
+      softDel: 0
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_skill_ex_Bone_position.prefab
+      prefab: {fileID: 2348924963286221956, guid: 6172336b665d63247b21836a749591a9, type: 3}
+      socket: SandWitch01_
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0
+      end: 2.334
+      follow: 1
+      disappear: 0
+      softDel: 0
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_skill_ex01.prefab
+      prefab: {fileID: 1893347001998519801, guid: c4f0ae71acf627c4bb108c4decbf39b7, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0
+      end: 2.334
+      follow: 1
+      disappear: 0
+      softDel: 0
+      speed: 1
+    hits:
+    - start: 2.667
+      end: 3
+      shape: 3
+      pos: {x: 0, y: 1, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 1, y: 1, z: 1}
+      radius: 15
+      height: 3
+      damageMul: 0
+      maxHits: 1
+      interval: 0
+      hitFx: 
+      hitFxPrefab: {fileID: 0}
+      hitFxScale: 1
+    bullets: []
+    moves: []
+    speeds: []
+  emitters:
+  - id: 1000
+    pos: {x: 0, y: 1, z: 0.5}
+    rot: {x: 0, y: 0, z: 0}
+    mouths: 1
+    range: 0
+    speed: 15
+    accel: -10
+    minSpeed: 5
+    maxSpeed: 999
+    life: 0.8
+    penetrate: 0
+    asset: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk01_
+      bullet.prefab
+    assetPrefab: {fileID: 7196551558280861179, guid: 9ec6d97dfe5eb7942b9dfb55926ce969, type: 3}
+    assetScale: 1
+    assetPos: {x: 0, y: 0, z: 0}
+    assetRot: {x: 0, y: 0, z: 0}
+    hurtFx: 
+    hurtFxPrefab: {fileID: 0}
+    hurtFxScale: 1
+    children:
+    - trigger: 2
+      emitter: 1001
+    - trigger: 1
+      emitter: 1001
+    - trigger: 4
+      emitter: 1001
+    - trigger: 3
+      emitter: 1001
+  - id: 1001
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+    mouths: 1
+    range: 0
+    speed: 0
+    accel: 0
+    minSpeed: -9999999
+    maxSpeed: 999
+    life: 3
+    penetrate: 0
+    asset: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_hit01.prefab
+    assetPrefab: {fileID: 3354169981953735148, guid: fd5288fe072e1a04e9fb47a29a76c3d3, type: 3}
+    assetScale: 1
+    assetPos: {x: 0, y: 0, z: 0}
+    assetRot: {x: 0, y: 0, z: 0}
+    hurtFx: 
+    hurtFxPrefab: {fileID: 0}
+    hurtFxScale: 1
+    children: []
+  - id: 1010
+    pos: {x: 0, y: 1, z: 0.5}
+    rot: {x: 0, y: 0, z: 0}
+    mouths: 1
+    range: 0
+    speed: 15
+    accel: -10
+    minSpeed: 5
+    maxSpeed: 999
+    life: 0.8
+    penetrate: 0
+    asset: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk01_
+      bullet.prefab
+    assetPrefab: {fileID: 7196551558280861179, guid: 9ec6d97dfe5eb7942b9dfb55926ce969, type: 3}
+    assetScale: 1
+    assetPos: {x: 0, y: 0, z: 0}
+    assetRot: {x: 0, y: 0, z: 0}
+    hurtFx: 
+    hurtFxPrefab: {fileID: 0}
+    hurtFxScale: 1
+    children:
+    - trigger: 2
+      emitter: 1011
+    - trigger: 1
+      emitter: 1011
+    - trigger: 4
+      emitter: 1011
+    - trigger: 3
+      emitter: 1011
+  - id: 1011
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+    mouths: 1
+    range: 0
+    speed: 0
+    accel: 0
+    minSpeed: -9999999
+    maxSpeed: 999
+    life: 3
+    penetrate: 0
+    asset: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_hit03.prefab
+    assetPrefab: {fileID: 6467582623984667602, guid: cf59d1f95252e74489d5b00f52f11791, type: 3}
+    assetScale: 1
+    assetPos: {x: 0, y: 0, z: 0}
+    assetRot: {x: 0, y: 0, z: 0}
+    hurtFx: 
+    hurtFxPrefab: {fileID: 0}
+    hurtFxScale: 1
+    children: []
+  - id: 1030
+    pos: {x: 0, y: 1, z: 0.5}
+    rot: {x: 0, y: 0, z: 0}
+    mouths: 1
+    range: 0
+    speed: 15
+    accel: -10
+    minSpeed: 5
+    maxSpeed: 999
+    life: 0.8
+    penetrate: 0
+    asset: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk01_
+      bullet.prefab
+    assetPrefab: {fileID: 7196551558280861179, guid: 9ec6d97dfe5eb7942b9dfb55926ce969, type: 3}
+    assetScale: 1
+    assetPos: {x: 0, y: 0, z: 0}
+    assetRot: {x: 0, y: 0, z: 0}
+    hurtFx: 
+    hurtFxPrefab: {fileID: 0}
+    hurtFxScale: 1
+    children:
+    - trigger: 2
+      emitter: 1031
+    - trigger: 1
+      emitter: 1031
+    - trigger: 4
+      emitter: 1031
+    - trigger: 3
+      emitter: 1031
+  - id: 1031
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+    mouths: 1
+    range: 0
+    speed: 0
+    accel: 0
+    minSpeed: -9999999
+    maxSpeed: 999
+    life: 3
+    penetrate: 0
+    asset: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_hit03.prefab
+    assetPrefab: {fileID: 6467582623984667602, guid: cf59d1f95252e74489d5b00f52f11791, type: 3}
+    assetScale: 1
+    assetPos: {x: 0, y: 0, z: 0}
+    assetRot: {x: 0, y: 0, z: 0}
+    hurtFx: 
+    hurtFxPrefab: {fileID: 0}
+    hurtFxScale: 1
+    children: []
+  - id: 1300
+    pos: {x: 0, y: 1, z: 1.2}
+    rot: {x: 0, y: 0, z: 0}
+    mouths: 1
+    range: 0
+    speed: 10
+    accel: -5
+    minSpeed: 0.5
+    maxSpeed: 999
+    life: 1.3
+    penetrate: 0
+    asset: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk_c_
+      bullet.prefab
+    assetPrefab: {fileID: 1503664385774987596, guid: af284b0fb7343934fa99a9b8c3cb9027, type: 3}
+    assetScale: 1
+    assetPos: {x: 0, y: 0, z: 0}
+    assetRot: {x: 0, y: 0, z: 0}
+    hurtFx: 
+    hurtFxPrefab: {fileID: 0}
+    hurtFxScale: 1
+    children:
+    - trigger: 2
+      emitter: 1301
+    - trigger: 1
+      emitter: 1301
+    - trigger: 4
+      emitter: 1301
+    - trigger: 3
+      emitter: 1301
+  - id: 1301
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+    mouths: 1
+    range: 0
+    speed: 0
+    accel: 0
+    minSpeed: -9999999
+    maxSpeed: 999
+    life: 3
+    penetrate: 0
+    asset: Assets/Art/FX/FX_Hero/FX_11003_shihuimei/Prefabs/pre_fx_shihuimei_atk_c_hit01.prefab
+    assetPrefab: {fileID: 7779089142988686775, guid: fe1dc0aa16103494286b43db63ad94e3, type: 3}
+    assetScale: 1
+    assetPos: {x: 0, y: 0, z: 0}
+    assetRot: {x: 0, y: 0, z: 0}
+    hurtFx: 
+    hurtFxPrefab: {fileID: 0}
+    hurtFxScale: 1
+    children: []

@@ -1,0 +1,1526 @@
+{
+ "heroId": "11008",
+ "sockets": [
+  {
+   "name": "center",
+   "bone": "Bip001 Spine",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "base",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "head_1_",
+   "bone": "Bip001 Head",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "youshou",
+   "bone": "Bip001 R Hand",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "zuoshou",
+   "bone": "Bip001 L Hand",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "hand_r_quantou",
+   "bone": "Bip001 L Hand",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "catchchest",
+   "bone": "Bip001 Spine",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "mianyiguadian",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 1.3,
+    "z": 0.3
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "chest_1_",
+   "bone": "Bip001 Neck",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "hud",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 1.9,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "line",
+   "bone": "Bip001 Head",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "damage",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 1.7,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "yuangui_1_",
+   "bone": "Bip001 Prop1",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "shieldLayer",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "hand_l",
+   "bone": "Bip001 L Hand",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  }
+ ],
+ "combo": [
+  {
+   "id": 5001,
+   "clip": "atk01",
+   "duration": 2.0,
+   "breakTime": 0.867,
+   "nextId": 5002,
+   "comboStart": 0.0,
+   "comboEnd": 0.867,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk01.prefab",
+     "socket": "base",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 15.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.034,
+     "end": 2.0,
+     "follow": false,
+     "disappear": 3,
+     "softDel": 0.666,
+     "speed": 1.0
+    }
+   ],
+   "hits": [
+    {
+     "start": 0.3,
+     "end": 0.4,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 2.25
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 4.5,
+      "y": 2.0,
+      "z": 4.5
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 1.0,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    }
+   ],
+   "bullets": [],
+   "moves": [],
+   "speeds": [
+    {
+     "start": 0.0,
+     "end": 0.334,
+     "speed": 2.0
+    }
+   ]
+  },
+  {
+   "id": 5002,
+   "clip": "atk02",
+   "duration": 1.934,
+   "breakTime": 0.667,
+   "nextId": 5003,
+   "comboStart": 0.167,
+   "comboEnd": 0.667,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk02.prefab",
+     "socket": "base",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.034,
+     "end": 1.934,
+     "follow": false,
+     "disappear": 3,
+     "softDel": 0.666,
+     "speed": 1.0
+    }
+   ],
+   "hits": [
+    {
+     "start": 0.3,
+     "end": 0.4,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 2.25
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 4.5,
+      "y": 2.0,
+      "z": 4.5
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 1.0,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    }
+   ],
+   "bullets": [],
+   "moves": [],
+   "speeds": [
+    {
+     "start": 0.0,
+     "end": 0.267,
+     "speed": 1.66
+    }
+   ]
+  },
+  {
+   "id": 5003,
+   "clip": "atk03",
+   "duration": 3.634,
+   "breakTime": 1.367,
+   "nextId": 5004,
+   "comboStart": 1.0,
+   "comboEnd": 1.367,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk03.prefab",
+     "socket": "base",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.034,
+     "end": 3.634,
+     "follow": true,
+     "disappear": 3,
+     "softDel": 0.033,
+     "speed": 1.0
+    }
+   ],
+   "hits": [
+    {
+     "start": 0.634,
+     "end": 0.734,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 1.7
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 3.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.1,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 0.734,
+     "end": 0.834,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 1.8
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 3.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.1,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 0.8,
+     "end": 0.9,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 1.9
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 3.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.1,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 0.867,
+     "end": 0.967,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 2.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 3.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.1,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 0.934,
+     "end": 1.034,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 2.1
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 3.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.1,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 1.0,
+     "end": 1.1,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 2.2
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 3.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.1,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 1.034,
+     "end": 1.134,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 2.3
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 3.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.1,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 1.1,
+     "end": 1.2,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 2.4
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 3.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.1,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 1.167,
+     "end": 1.267,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 2.5
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 3.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.1,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 1.234,
+     "end": 1.334,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 2.6
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 3.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.1,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+     "hitFxScale": 1.0
+    }
+   ],
+   "bullets": [],
+   "moves": [],
+   "speeds": []
+  },
+  {
+   "id": 5004,
+   "clip": "atk04",
+   "duration": 3.034,
+   "breakTime": 1.834,
+   "nextId": 0,
+   "comboStart": 0.0,
+   "comboEnd": 0.0,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_02.prefab",
+     "socket": "",
+     "pos": {
+      "x": 0.3,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.034,
+     "end": 3.034,
+     "follow": false,
+     "disappear": 1,
+     "softDel": 0.0,
+     "speed": 1.0
+    },
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04.prefab",
+     "socket": "base",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": -30.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.034,
+     "end": 3.034,
+     "follow": false,
+     "disappear": 3,
+     "softDel": 0.666,
+     "speed": 1.0
+    },
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk_xuanzhuan.prefab",
+     "socket": "yuangui_1_",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 90.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.367,
+     "end": 1.0,
+     "follow": true,
+     "disappear": 1,
+     "softDel": 0.0,
+     "speed": 1.0
+    }
+   ],
+   "hits": [
+    {
+     "start": 0.467,
+     "end": 0.567,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 1.5
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 4.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.25,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk02_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 0.534,
+     "end": 0.634,
+     "shape": 1,
+     "pos": {
+      "x": -1.0,
+      "y": 1.0,
+      "z": 1.5
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 4.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.25,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk02_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 0.6,
+     "end": 0.7,
+     "shape": 1,
+     "pos": {
+      "x": -1.0,
+      "y": 1.0,
+      "z": 1.5
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 4.0,
+      "y": 2.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.25,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk02_hit.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 1.034,
+     "end": 1.134,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 2.5
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 6.0,
+      "y": 2.0,
+      "z": 5.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 0.25,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk01_hit.prefab",
+     "hitFxScale": 1.0
+    }
+   ],
+   "bullets": [],
+   "moves": [],
+   "speeds": [
+    {
+     "start": 0.467,
+     "end": 0.767,
+     "speed": 1.5
+    },
+    {
+     "start": 0.8,
+     "end": 1.167,
+     "speed": 2.0
+    }
+   ]
+  }
+ ],
+ "heavy": {
+  "id": 5101,
+  "clip": "atk_c",
+  "duration": 2.734,
+  "breakTime": 1.334,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk_c.prefab",
+    "socket": "",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.034,
+    "end": 2.734,
+    "follow": false,
+    "disappear": 3,
+    "softDel": 0.033,
+    "speed": 1.0
+   }
+  ],
+  "hits": [
+   {
+    "start": 0.634,
+    "end": 0.734,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 1.8
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 2.0,
+     "y": 2.0,
+     "z": 3.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.1,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 0.734,
+    "end": 0.834,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 1.9
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 3.0,
+     "y": 2.0,
+     "z": 3.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.1,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 0.8,
+    "end": 0.9,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 2.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 3.0,
+     "y": 2.0,
+     "z": 3.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.1,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 0.867,
+    "end": 0.967,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 2.1
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 3.0,
+     "y": 2.0,
+     "z": 3.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.1,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 0.934,
+    "end": 1.034,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 2.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 3.0,
+     "y": 2.0,
+     "z": 3.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.1,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 1.0,
+    "end": 1.1,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 1.9
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 3.0,
+     "y": 2.0,
+     "z": 3.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.1,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 1.067,
+    "end": 1.167,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 1.8
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 3.0,
+     "y": 2.0,
+     "z": 3.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.1,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 1.134,
+    "end": 1.234,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 1.8
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 3.0,
+     "y": 2.0,
+     "z": 3.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.1,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 1.2,
+    "end": 1.3,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 1.8
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 3.0,
+     "y": 2.0,
+     "z": 3.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.1,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 1.234,
+    "end": 1.334,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 1.8
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 3.0,
+     "y": 2.0,
+     "z": 3.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.1,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/atk04_hit.prefab",
+    "hitFxScale": 1.0
+   }
+  ],
+  "bullets": [],
+  "moves": [],
+  "speeds": []
+ },
+ "skill1": {
+  "id": 5401,
+  "clip": "skill01",
+  "duration": 3.2,
+  "breakTime": 1.1,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [],
+  "hits": [],
+  "bullets": [
+   {
+    "start": 0.2,
+    "emitter": 3000
+   }
+  ],
+  "moves": [],
+  "speeds": []
+ },
+ "skill2": {
+  "id": 5501,
+  "clip": "skill02",
+  "duration": 3.567,
+  "breakTime": 1.1,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/skill02_blood.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.067,
+    "end": 3.334,
+    "follow": false,
+    "disappear": 1,
+    "softDel": 0.0,
+    "speed": 1.0
+   }
+  ],
+  "hits": [],
+  "bullets": [
+   {
+    "start": 0.067,
+    "emitter": 2000
+   }
+  ],
+  "moves": [],
+  "speeds": []
+ },
+ "ultimate": {
+  "id": 6001,
+  "clip": "skill_ex",
+  "duration": 3.834,
+  "breakTime": 2.834,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/pre_fx_nuoyihaosi_skillex_show.prefab",
+    "socket": "",
+    "pos": {
+     "x": 0.0,
+     "y": 0.05,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.0,
+    "end": 2.5,
+    "follow": true,
+    "disappear": 0,
+    "softDel": 0.0,
+    "speed": 1.0
+   }
+  ],
+  "hits": [],
+  "bullets": [
+   {
+    "start": 0.0,
+    "emitter": 1003
+   }
+  ],
+  "moves": [],
+  "speeds": []
+ },
+ "emitters": [
+  {
+   "id": 3000,
+   "pos": {
+    "x": 0.0,
+    "y": 1.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 30.0,
+   "accel": 0.0,
+   "minSpeed": -9999999.0,
+   "maxSpeed": 999.0,
+   "life": 0.05,
+   "penetrate": false,
+   "asset": "",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "",
+   "hurtFxScale": 1.0,
+   "children": [
+    {
+     "trigger": 1,
+     "emitter": 3001
+    },
+    {
+     "trigger": 0,
+     "emitter": 1001
+    },
+    {
+     "trigger": 4,
+     "emitter": 3001
+    },
+    {
+     "trigger": 2,
+     "emitter": 3001
+    },
+    {
+     "trigger": 6,
+     "emitter": 3001
+    }
+   ]
+  },
+  {
+   "id": 3001,
+   "pos": {
+    "x": 0.0,
+    "y": 0.01,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 0.0,
+   "accel": 0.0,
+   "minSpeed": -9999999.0,
+   "maxSpeed": 999.0,
+   "life": 9.0,
+   "penetrate": false,
+   "asset": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/skill01.prefab",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "",
+   "hurtFxScale": 1.0,
+   "children": []
+  },
+  {
+   "id": 1001,
+   "pos": {
+    "x": 0.0,
+    "y": 0.01,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 0.0,
+   "accel": 0.0,
+   "minSpeed": -9999999.0,
+   "maxSpeed": 999.0,
+   "life": 9.0,
+   "penetrate": false,
+   "asset": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/skill02.prefab",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "",
+   "hurtFxScale": 1.0,
+   "children": []
+  },
+  {
+   "id": 2000,
+   "pos": {
+    "x": 0.0,
+    "y": 1.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 80.0,
+   "accel": 0.0,
+   "minSpeed": -9999999.0,
+   "maxSpeed": 999.0,
+   "life": 0.05,
+   "penetrate": false,
+   "asset": "",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "",
+   "hurtFxScale": 1.0,
+   "children": [
+    {
+     "trigger": 1,
+     "emitter": 1001
+    },
+    {
+     "trigger": 4,
+     "emitter": 1001
+    },
+    {
+     "trigger": 0,
+     "emitter": 1001
+    },
+    {
+     "trigger": 6,
+     "emitter": 1001
+    }
+   ]
+  },
+  {
+   "id": 1003,
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 0.0,
+   "accel": 0.0,
+   "minSpeed": -9999999.0,
+   "maxSpeed": 999.0,
+   "life": 6.0,
+   "penetrate": false,
+   "asset": "Assets/Art/FX/FX_Hero/FX_11008_nuoyihaosi/Prefabs/zuishangjishifanquan.prefab",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "",
+   "hurtFxScale": 1.0,
+   "children": []
+  }
+ ]
+}

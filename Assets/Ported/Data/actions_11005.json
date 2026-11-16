@@ -1,0 +1,1233 @@
+{
+ "heroId": "11005",
+ "sockets": [
+  {
+   "name": "center",
+   "bone": "Bip001 Spine",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "base",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "head",
+   "bone": "Bip001 Head",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "spskill",
+   "bone": "Bip001 L Hand",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "youshou",
+   "bone": "Bip001 R Hand",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "zuoshou",
+   "bone": "Bip001 L Hand",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "hud",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 1.8,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "line",
+   "bone": "Bip001 Head",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "youshou_yubi",
+   "bone": "Bip001 R Finger21",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "zuoshou_yubi",
+   "bone": "Bip001 L Finger21",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "weapon01_",
+   "bone": "Bip001 L Hand",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "weapon02_",
+   "bone": "Bip001 R Hand",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "damage",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 1.5,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "shieldLayer",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  }
+ ],
+ "combo": [
+  {
+   "id": 5001,
+   "clip": "atk01",
+   "duration": 1.334,
+   "breakTime": 1.0,
+   "nextId": 5002,
+   "comboStart": 0.167,
+   "comboEnd": 1.0,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_atk01_fuzhi01.prefab",
+     "socket": "youshou_yubi",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.034,
+     "end": 1.867,
+     "follow": true,
+     "disappear": 0,
+     "softDel": 0.05,
+     "speed": 1.0
+    },
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_atk01.prefab",
+     "socket": "base",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.067,
+     "end": 1.667,
+     "follow": false,
+     "disappear": 3,
+     "softDel": 1.0,
+     "speed": 1.0
+    }
+   ],
+   "hits": [],
+   "bullets": [
+    {
+     "start": 0.2,
+     "emitter": 1001
+    }
+   ],
+   "moves": [],
+   "speeds": []
+  },
+  {
+   "id": 5002,
+   "clip": "atk02",
+   "duration": 1.467,
+   "breakTime": 1.0,
+   "nextId": 5003,
+   "comboStart": 0.267,
+   "comboEnd": 1.334,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_atk01_fuzhi01.prefab",
+     "socket": "youshou_yubi",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.034,
+     "end": 2.667,
+     "follow": true,
+     "disappear": 0,
+     "softDel": 0.05,
+     "speed": 1.0
+    },
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_atk02.prefab",
+     "socket": "base",
+     "pos": {
+      "x": -0.6,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.067,
+     "end": 2.667,
+     "follow": false,
+     "disappear": 3,
+     "softDel": 0.5,
+     "speed": 1.25
+    }
+   ],
+   "hits": [],
+   "bullets": [
+    {
+     "start": 0.2,
+     "emitter": 1002
+    }
+   ],
+   "moves": [],
+   "speeds": []
+  },
+  {
+   "id": 5003,
+   "clip": "atk03",
+   "duration": 1.5,
+   "breakTime": 1.167,
+   "nextId": 5004,
+   "comboStart": 0.267,
+   "comboEnd": 1.167,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_atk03_fuzhi02.prefab",
+     "socket": "zuoshou_yubi",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.0,
+     "end": 1.5,
+     "follow": true,
+     "disappear": 1,
+     "softDel": 0.1,
+     "speed": 1.0
+    }
+   ],
+   "hits": [],
+   "bullets": [
+    {
+     "start": 0.267,
+     "emitter": 3001
+    }
+   ],
+   "moves": [],
+   "speeds": [
+    {
+     "start": 0.0,
+     "end": 0.4,
+     "speed": 1.25
+    },
+    {
+     "start": 0.4,
+     "end": 0.6,
+     "speed": 0.3
+    }
+   ]
+  },
+  {
+   "id": 5004,
+   "clip": "atk04",
+   "duration": 3.667,
+   "breakTime": 2.0,
+   "nextId": 0,
+   "comboStart": 0.0,
+   "comboEnd": 0.0,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_atk03_fuzhi02.prefab",
+     "socket": "zuoshou_yubi",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.067,
+     "end": 1.5,
+     "follow": true,
+     "disappear": 1,
+     "softDel": 0.1,
+     "speed": 1.0
+    },
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_atk04.prefab",
+     "socket": "",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.234,
+     "end": 1.4,
+     "follow": true,
+     "disappear": 1,
+     "softDel": 0.05,
+     "speed": 1.0
+    },
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_atk04_02.prefab",
+     "socket": "",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 5.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 1.0,
+     "end": 2.067,
+     "follow": false,
+     "disappear": 3,
+     "softDel": 1.0,
+     "speed": 1.0
+    }
+   ],
+   "hits": [
+    {
+     "start": 1.0,
+     "end": 1.2,
+     "shape": 3,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 5.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "radius": 4.0,
+     "height": 3.0,
+     "damageMul": 0.0,
+     "maxHits": 1,
+     "interval": 0.0001,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_hit_baoshi.prefab",
+     "hitFxScale": 1.0
+    }
+   ],
+   "bullets": [],
+   "moves": [],
+   "speeds": []
+  }
+ ],
+ "heavy": {
+  "id": 5101,
+  "clip": "atk_c",
+  "duration": 2.834,
+  "breakTime": 1.934,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_atk_c_fuzhi_01.prefab",
+    "socket": "zuoshou_yubi",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.0,
+    "end": 2.5,
+    "follow": true,
+    "disappear": 0,
+    "softDel": 0.05,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_atk_c_qi.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.434,
+    "end": 2.5,
+    "follow": false,
+    "disappear": 2,
+    "softDel": 0.05,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_atk_c_02_qi01.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.767,
+    "end": 2.5,
+    "follow": false,
+    "disappear": 2,
+    "softDel": 0.05,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_atk_c_02_qi02.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 5.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.867,
+    "end": 2.5,
+    "follow": false,
+    "disappear": 2,
+    "softDel": 0.1,
+    "speed": 1.0
+   }
+  ],
+  "hits": [
+   {
+    "start": 0.934,
+    "end": 1.334,
+    "shape": 3,
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 5.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "radius": 4.0,
+    "height": 3.0,
+    "damageMul": 0.0,
+    "maxHits": 1,
+    "interval": 0.0001,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_hit_baoshi.prefab",
+    "hitFxScale": 1.0
+   }
+  ],
+  "bullets": [],
+  "moves": [],
+  "speeds": []
+ },
+ "skill1": {
+  "id": 5401,
+  "clip": "skill01",
+  "duration": 4.334,
+  "breakTime": 1.5,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_skill_01_fuzhi_01.prefab",
+    "socket": "weapon01_",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.0,
+    "end": 4.334,
+    "follow": true,
+    "disappear": 2,
+    "softDel": 0.05,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_skill01.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.5,
+     "y": 1.5,
+     "z": 1.5
+    },
+    "start": 0.467,
+    "end": 3.334,
+    "follow": false,
+    "disappear": 2,
+    "softDel": 0.05,
+    "speed": 1.0
+   }
+  ],
+  "hits": [
+   {
+    "start": 0.734,
+    "end": 0.8,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.5,
+     "z": 2.5
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 4.0,
+     "y": 3.0,
+     "z": 5.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.0,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_hit_yuzhuanjin.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 0.934,
+    "end": 1.034,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.5,
+     "z": 5.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 4.0,
+     "y": 3.0,
+     "z": 5.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.0,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_hit_yuzhuanjin.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 1.4,
+    "end": 1.5,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.5,
+     "z": 6.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 7.0,
+     "y": 3.0,
+     "z": 7.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.0,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_hit_yuzhuanjin.prefab",
+    "hitFxScale": 1.0
+   }
+  ],
+  "bullets": [],
+  "moves": [],
+  "speeds": []
+ },
+ "skill2": {
+  "id": 5501,
+  "clip": "skill02",
+  "duration": 3.4,
+  "breakTime": 2.5,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_atk03_fuzhi01.prefab",
+    "socket": "weapon01_",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.0,
+    "end": 4.334,
+    "follow": true,
+    "disappear": 2,
+    "softDel": 0.05,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_skill02_benti.prefab",
+    "socket": "",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.067,
+    "end": 3.667,
+    "follow": true,
+    "disappear": 1,
+    "softDel": 0.05,
+    "speed": 1.0
+   }
+  ],
+  "hits": [],
+  "bullets": [
+   {
+    "start": 0.067,
+    "emitter": 5501
+   }
+  ],
+  "moves": [],
+  "speeds": [
+   {
+    "start": 0.0,
+    "end": 1.0,
+    "speed": 0.9
+   }
+  ]
+ },
+ "ultimate": {
+  "id": 6001,
+  "clip": "skill_ex_new",
+  "duration": 4.834,
+  "breakTime": 2.334,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_skill_ex_fuzhi_02.prefab",
+    "socket": "youshou_yubi",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.01
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.0,
+    "end": 3.0,
+    "follow": true,
+    "disappear": 0,
+    "softDel": 0.05,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_skill_ex_fuzhi_01.prefab",
+    "socket": "zuoshou_yubi",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": -0.01
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.0,
+    "end": 3.0,
+    "follow": true,
+    "disappear": 0,
+    "softDel": 0.05,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_skill_ex_huli.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.0,
+    "end": 5.667,
+    "follow": true,
+    "disappear": 2,
+    "softDel": 0.0,
+    "speed": 1.0
+   }
+  ],
+  "hits": [
+   {
+    "start": 1.667,
+    "end": 1.9,
+    "shape": 3,
+    "pos": {
+     "x": 0.0,
+     "y": 2.0,
+     "z": 5.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "radius": 4.0,
+    "height": 5.0,
+    "damageMul": 1.0,
+    "maxHits": 1,
+    "interval": 0.0,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_hit_baoshi.prefab",
+    "hitFxScale": 1.0
+   }
+  ],
+  "bullets": [
+   {
+    "start": 1.667,
+    "emitter": 6001
+   }
+  ],
+  "moves": [],
+  "speeds": []
+ },
+ "emitters": [
+  {
+   "id": 1001,
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 15.0,
+   "accel": 20.0,
+   "minSpeed": -9999999.0,
+   "maxSpeed": 999.0,
+   "life": 0.4,
+   "penetrate": false,
+   "asset": "",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "",
+   "hurtFxScale": 1.0,
+   "children": []
+  },
+  {
+   "id": 1002,
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 15.0,
+   "accel": 20.0,
+   "minSpeed": -9999999.0,
+   "maxSpeed": 999.0,
+   "life": 0.4,
+   "penetrate": false,
+   "asset": "",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "",
+   "hurtFxScale": 1.0,
+   "children": []
+  },
+  {
+   "id": 3001,
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 4.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 0.0,
+   "accel": 0.0,
+   "minSpeed": -9999999.0,
+   "maxSpeed": 999.0,
+   "life": 1.8,
+   "penetrate": false,
+   "asset": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_atk03.prefab",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "",
+   "hurtFxScale": 1.0,
+   "children": []
+  },
+  {
+   "id": 5501,
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 80.0,
+   "accel": 0.0,
+   "minSpeed": 0.0,
+   "maxSpeed": 80.0,
+   "life": 0.15,
+   "penetrate": false,
+   "asset": "Assets/Art/FX/FX_Hero/empty_effect.prefab",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "",
+   "hurtFxScale": 1.0,
+   "children": [
+    {
+     "trigger": 2,
+     "emitter": 5502
+    },
+    {
+     "trigger": 1,
+     "emitter": 5502
+    }
+   ]
+  },
+  {
+   "id": 5502,
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 3.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 0.0,
+   "accel": 0.0,
+   "minSpeed": -9999999.0,
+   "maxSpeed": 999.0,
+   "life": 4.0,
+   "penetrate": false,
+   "asset": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_skill02.prefab",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "",
+   "hurtFxScale": 1.0,
+   "children": []
+  },
+  {
+   "id": 6001,
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 0.0,
+   "accel": 0.0,
+   "minSpeed": -9999999.0,
+   "maxSpeed": 999.0,
+   "life": 3.3,
+   "penetrate": false,
+   "asset": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_skill_ex.prefab",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "Assets/Art/FX/FX_Hero/FX_11005_shenmuchuyun/Prefabs/pre_fx_shenmuchuyun_hit_baoshi.prefab",
+   "hurtFxScale": 1.0,
+   "children": []
+  }
+ ]
+}

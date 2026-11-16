@@ -1,0 +1,221 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: fx_bc_atk01_fire_lzt_01 3
+  m_Shader: {fileID: 4800000, guid: 3c77bba935b84e538e0158a0514009f1, type: 3}
+  m_ValidKeywords:
+  - _MASK_ON
+  m_InvalidKeywords:
+  - TRANSPARENTFXBLOOM
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveTex:
+        m_Texture: {fileID: 2800000, guid: 6220f90d4b89049408d5c408793fa9b8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortionTex:
+        m_Texture: {fileID: 2800000, guid: 05dcd3638ce39f74da3abe382103d588, type: 3}
+        m_Scale: {x: 0.5, y: 0.5}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: ac4c2c0e8db91e54388bdfb8cfae416a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecDissolveTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _VatTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaClip: 0
+    - _AlphaRange: 0
+    - _AlphaRangeMax: 1
+    - _AlphaRangeMin: 0
+    - _AlphaRangeON: 0
+    - _Blend: 0
+    - _BlendMode: 1
+    - _BloomOn: 1
+    - _BumpScale: 1
+    - _CameraDepth: 0
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DEPTH_GRP: 0
+    - _DETAIL_TEX_GRP: 0
+    - _DISSOLVE_GRP: 0
+    - _DISTORTION_GRP: 0
+    - _DepthFadePow: 1
+    - _DepthFadeRange: 0.1
+    - _DepthOffsetOn: 0
+    - _DetailAlbedoMapScale: 1
+    - _DetailNormalMapScale: 1
+    - _DetailTexDistortMode: 0
+    - _DetailTexUVDistortIntensity: 0.5
+    - _DetailUVWrapMode: 0
+    - _DissolveColorMode: 2
+    - _DissolveEdgeInnerSoftness: 0.1
+    - _DissolveEdgeOutterSoftness: 0
+    - _DissolveEdgeOutterSoftnessMode: 1
+    - _DissolveEdgeWidth: 0
+    - _DissolveIntensity: 0.162
+    - _DissolveMode: 1
+    - _DissolveUVDistortIntensity: 0.1
+    - _DissolveUVDistortMode: 1
+    - _DissolveUVRandMode: 2
+    - _DissolveUVWrapMode: 0
+    - _DistortionUVRandMode: 1
+    - _DstBlend: 10
+    - _EnvironmentReflections: 1
+    - _FogOn: 0
+    - _GlobalAlpha: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
+    - _IsDistortionMask: 0
+    - _IsGradient: 1
+    - _MAIN_TEX_GRP: 0
+    - _MASK_GRP: 1
+    - _MainColorChannel: 1
+    - _MainTexDistortMode: 2
+    - _MainTexUVDistortIntensity: 0
+    - _MainUVWrapMode: 1
+    - _MaskChannel: 0
+    - _MaskDistortMode: 0
+    - _MaskUVDistortIntensity: 0.5
+    - _MaskUVWrapMode: 0
+    - _Metallic: 0
+    - _NearFadeRange: 10
+    - _NearFadeStar: 5
+    - _OcclusionStrength: 1
+    - _Parallax: 0.005
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _SEC_DISSOLVE_GRP: 0
+    - _SecDissolveEdgeInnerSoftness: 0
+    - _SecDissolveIntensity: 0
+    - _SecDissolveMode: 0
+    - _SecDissolveUVWrapMode: 0
+    - _Smoothness: 0.5
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 5
+    - _Surface: 0
+    - _VATOn: 0
+    - _VatAnimspeed: 1
+    - _VertexUVRows: 1
+    - _WorkflowMode: 1
+    - _XboundingMax: 1
+    - _XboundingMin: 0
+    - _YboundingMax: 1
+    - _YboundingMin: 0
+    - _ZOffsetViewSpace: 0
+    - _ZWrite: 0
+    - _ZboundingMax: 1
+    - _ZboundingMin: 0
+    - _numOfFrames: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BloomTint: {r: 0, g: 0.4392157, b: 2, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DetailAlphaChannel: {r: 0, g: 0, b: 0, a: 1}
+    - _DetailTexRotateParams: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _DetailUVFlowSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _DissolveChannel: {r: 1, g: 0, b: 0, a: 0}
+    - _DissolveEdgeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DissolveRotateParams: {r: 0.5, g: 0.5, b: 180, a: 0}
+    - _DissolveUVFlowSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _DistortionUVSpeed: {r: -0.3, g: -0.3, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GradientColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientColor2: {r: 0, g: 0.17240834, b: 1, a: 1}
+    - _GradientRotateParams: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _GradientTillingParams: {r: 1, g: 1, b: 0, a: 0}
+    - _MainAlphaChannel: {r: 0, g: 1, b: 0, a: 0}
+    - _MainChannel: {r: 0, g: 1, b: 0, a: 0}
+    - _MainColor: {r: 2.9245284, g: 3.320632, b: 4, a: 1}
+    - _MainHSV: {r: 0, g: 1, b: 1, a: 0}
+    - _MainTexRotateParams: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _MainUVFlowSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _MaskRotateParams: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _SecDissolveChannel: {r: 1, g: 0, b: 0, a: 0}
+    - _SecDissolveUVFlowSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_BuildTextureStacks: []

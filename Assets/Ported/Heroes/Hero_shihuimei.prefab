@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &778449855775848773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2980245601543388369}
+  - component: {fileID: 4693447373544768500}
+  - component: {fileID: 441906062346816601}
+  m_Layer: 0
+  m_Name: Hero_shihuimei
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2980245601543388369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778449855775848773}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3819955015791836771}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &4693447373544768500
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778449855775848773}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.8
+  m_Radius: 0.3
+  m_SlopeLimit: 45
+  m_StepOffset: 0.35
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &441906062346816601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778449855775848773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037434aaa5981d946bf7b69d0a79d489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Ported.Runtime::Ported.HeroController
+  actions: {fileID: 11400000, guid: e7bab67b7be44e24cab615be9212f438, type: 2}
+  moveSpeed: 5.5
+  turnSpeed: 14
+  baseDamage: 10
+  idleStates:
+  - idle
+  - idle_f
+  runStates:
+  - run_R
+  - run_f
+  - run
+  - walk
+  cameraTransform: {fileID: 0}
+  inputEnabled: 1
+  comboKey: 24
+  heavyKey: 35
+  skill1Key: 25
+  skill2Key: 26
+  ultimateKey: 23
+--- !u!1001 &3172620269577170661
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2980245601543388369}
+    m_Modifications:
+    - target: {fileID: 1802668599776088198, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802668599776088198, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802668599776088198, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802668599776088198, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802668599776088198, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802668599776088198, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802668599776088198, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802668599776088198, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802668599776088198, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802668599776088198, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565447058653929810, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+      propertyPath: m_Name
+      value: Ch_11003_shihuimei
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+--- !u!4 &3819955015791836771 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1802668599776088198, guid: 222ba4e3ce7ae2e45bb8c1c6f129062c, type: 3}
+  m_PrefabInstance: {fileID: 3172620269577170661}
+  m_PrefabAsset: {fileID: 0}

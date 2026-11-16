@@ -1,0 +1,536 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62313c6b0efa47b2949e5d64349c54fb, type: 3}
+  m_Name: Actions_zhurengong_A
+  m_EditorClassIdentifier: Ported.Runtime:Ported:HeroActionSet
+  heroId: 11501
+  sockets:
+  - name: center
+    bone: Bip001 Spine
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: base
+    bone: character_root
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: youshou
+    bone: Bip001 R Hand
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: zuoshou
+    bone: Bip001 L Hand
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: hand_r_quantou
+    bone: Bip001 L Hand
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: catchchest
+    bone: Bip001 Spine
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: mianyiguadian
+    bone: character_root
+    pos: {x: 0, y: 1.3, z: 0.3}
+    rot: {x: 0, y: 0, z: 0}
+  - name: chest_1_
+    bone: Bip001 Neck
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: hud
+    bone: character_root
+    pos: {x: 0, y: 1.8, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: line
+    bone: Bip001 Head
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: damage
+    bone: character_root
+    pos: {x: 0, y: 1.7, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: laidian
+    bone: Bip001 R Hand
+    pos: {x: -0.1, y: -0.2, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: weapon001_
+    bone: Bip001_weapon_01
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  - name: shieldLayer
+    bone: character_root
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0}
+  combo:
+  - id: 5001
+    clip: atk01
+    duration: 1.5
+    breakTime: 0.734
+    nextId: 5002
+    comboStart: 0
+    comboEnd: 0.734
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk01.prefab
+      prefab: {fileID: 2645144334577464347, guid: e5ae80dc6a3fc6f4b9cb4c8ce5b22e59, type: 3}
+      socket: base
+      pos: {x: 0, y: 0.1, z: 0.2}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.1
+      end: 1.067
+      follow: 0
+      disappear: 1
+      softDel: 0.1
+      speed: 1
+    hits:
+    - start: 0.134
+      end: 0.2
+      shape: 1
+      pos: {x: 0, y: 1, z: 1.5}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 3, y: 2, z: 2}
+      radius: 0.5
+      height: 1
+      damageMul: 1
+      maxHits: 1
+      interval: 0.001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_M.prefab
+      hitFxPrefab: {fileID: 185237361988010727, guid: ce5ec325ad136a743865ae58acb4cde8, type: 3}
+      hitFxScale: 1
+    bullets: []
+    moves: []
+    speeds: []
+  - id: 5002
+    clip: atk02
+    duration: 1.934
+    breakTime: 1.167
+    nextId: 5003
+    comboStart: 0.334
+    comboEnd: 1.167
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk02_01.prefab
+      prefab: {fileID: 4071084103971001501, guid: 83cbc863e80c5e8478227a0bd3ccc2e1, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.334
+      end: 1.934
+      follow: 0
+      disappear: 1
+      softDel: 0.033
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk02_02.prefab
+      prefab: {fileID: 1961632661753022450, guid: 00d2255c19558b94a9d4f3d248902a42, type: 3}
+      socket: 
+      pos: {x: -0.2, y: 0.267, z: -0.1}
+      rot: {x: 3.646, y: 3.92, z: -9.318}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.5
+      end: 1.934
+      follow: 0
+      disappear: 1
+      softDel: 0.033
+      speed: 1
+    hits:
+    - start: 0.334
+      end: 0.434
+      shape: 1
+      pos: {x: 0, y: 1, z: 1.5}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 3, y: 2, z: 2}
+      radius: 0.5
+      height: 1
+      damageMul: 1
+      maxHits: 1
+      interval: 0.001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_M.prefab
+      hitFxPrefab: {fileID: 185237361988010727, guid: ce5ec325ad136a743865ae58acb4cde8, type: 3}
+      hitFxScale: 1
+    - start: 0.567
+      end: 0.667
+      shape: 1
+      pos: {x: 0, y: 1, z: 1.5}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 3, y: 2, z: 2}
+      radius: 0.5
+      height: 1
+      damageMul: 0.6
+      maxHits: 1
+      interval: 0.001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_M.prefab
+      hitFxPrefab: {fileID: 185237361988010727, guid: ce5ec325ad136a743865ae58acb4cde8, type: 3}
+      hitFxScale: 1
+    bullets: []
+    moves: []
+    speeds:
+    - start: 0
+      end: 0.267
+      speed: 1.5
+    - start: 0.334
+      end: 0.534
+      speed: 1.5
+  - id: 5003
+    clip: atk03
+    duration: 2.1
+    breakTime: 1.2
+    nextId: 5004
+    comboStart: 0.334
+    comboEnd: 1.2
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk03.prefab
+      prefab: {fileID: 138701324010435766, guid: 039cbbc6586444c489456448dbe83781, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.134
+      end: 2.1
+      follow: 0
+      disappear: 1
+      softDel: 0.033
+      speed: 1
+    hits:
+    - start: 0.134
+      end: 0.2
+      shape: 1
+      pos: {x: 0, y: 1, z: 1.5}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 3, y: 2, z: 2}
+      radius: 0.5
+      height: 1
+      damageMul: 1
+      maxHits: 1
+      interval: 0.001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_M.prefab
+      hitFxPrefab: {fileID: 185237361988010727, guid: ce5ec325ad136a743865ae58acb4cde8, type: 3}
+      hitFxScale: 1
+    bullets: []
+    moves: []
+    speeds:
+    - start: 0.467
+      end: 0.634
+      speed: 3
+  - id: 5004
+    clip: atk04
+    duration: 2.067
+    breakTime: 0.767
+    nextId: 0
+    comboStart: 0
+    comboEnd: 0
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk04.prefab
+      prefab: {fileID: 2402513729501900354, guid: 5ef96de954f4a704da473009c73614cd, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.134
+      end: 2.334
+      follow: 0
+      disappear: 3
+      softDel: 0.033
+      speed: 0.7
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk04_02.prefab
+      prefab: {fileID: 3069617486604317765, guid: c3a0b82c40658e147880fcfc35624a16, type: 3}
+      socket: 
+      pos: {x: 0, y: 0.6, z: 0.7}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 0.5, y: 0.5, z: 0.5}
+      start: 0.334
+      end: 2.334
+      follow: 0
+      disappear: 2
+      softDel: 0.033
+      speed: 1
+    hits:
+    - start: 0.134
+      end: 0.534
+      shape: 1
+      pos: {x: 0, y: 1, z: 1.5}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 3, y: 2, z: 3}
+      radius: 0.5
+      height: 1
+      damageMul: 0.2
+      maxHits: 4
+      interval: 0.0001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_L.prefab
+      hitFxPrefab: {fileID: 2019946872834480762, guid: 79055311b6cd8e740b7d25cc704ee2c3, type: 3}
+      hitFxScale: 1
+    - start: 0.467
+      end: 0.534
+      shape: 1
+      pos: {x: 0, y: 1, z: 2}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 3, y: 2, z: 3}
+      radius: 0.5
+      height: 1
+      damageMul: 0.2
+      maxHits: 1
+      interval: 0.001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_M.prefab
+      hitFxPrefab: {fileID: 185237361988010727, guid: ce5ec325ad136a743865ae58acb4cde8, type: 3}
+      hitFxScale: 1
+    bullets: []
+    moves: []
+    speeds:
+    - start: 0.3
+      end: 0.434
+      speed: 0.4
+    - start: 0.434
+      end: 1.034
+      speed: 3
+  heavy:
+    id: 5101
+    clip: atk_c
+    duration: 2.1
+    breakTime: 0.667
+    nextId: 0
+    comboStart: 0
+    comboEnd: 0
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk_c.prefab
+      prefab: {fileID: 6460491917666173127, guid: 0859ba9712f550e4294353a9260e8dbe, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: 0.5}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.534
+      end: 1.667
+      follow: 0
+      disappear: 1
+      softDel: 0.033
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk_c_shoudao.prefab
+      prefab: {fileID: 8707207411721836285, guid: 0da6668516b73e14b9622aac66c8e790, type: 3}
+      socket: base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.934
+      end: 2.434
+      follow: 1
+      disappear: 1
+      softDel: 0.033
+      speed: 1
+    hits:
+    - start: 0.567
+      end: 0.634
+      shape: 1
+      pos: {x: 0, y: 1, z: 2.25}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 4, y: 2, z: 4.5}
+      radius: 0.5
+      height: 1
+      damageMul: 0
+      maxHits: 1
+      interval: 0.001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_H.prefab
+      hitFxPrefab: {fileID: 9189430378040415610, guid: 0039e5f22be43754faffd4180555bc85, type: 3}
+      hitFxScale: 1
+    - start: 0.7
+      end: 0.8
+      shape: 1
+      pos: {x: 0, y: 1, z: 2}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 4, y: 2, z: 4}
+      radius: 0.5
+      height: 1
+      damageMul: 0.5
+      maxHits: 1
+      interval: 0.001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_H.prefab
+      hitFxPrefab: {fileID: 9189430378040415610, guid: 0039e5f22be43754faffd4180555bc85, type: 3}
+      hitFxScale: 1
+    bullets: []
+    moves: []
+    speeds: []
+  skill1:
+    id: 5401
+    clip: skill01
+    duration: 3.334
+    breakTime: 0.534
+    nextId: 0
+    comboStart: 0
+    comboEnd: 0
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_skill01_physic.prefab
+      prefab: {fileID: 905493871500553797, guid: 5ebee0a818909c5409435ed396c86cca, type: 3}
+      socket: base
+      pos: {x: 0, y: 0.75, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.3
+      end: 0.934
+      follow: 1
+      disappear: 3
+      softDel: 0.333
+      speed: 1
+    hits:
+    - start: 0.3
+      end: 0.6
+      shape: 1
+      pos: {x: 0, y: 1, z: 1.5}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 3, y: 2, z: 2}
+      radius: 0.5
+      height: 1
+      damageMul: 0.4
+      maxHits: 3
+      interval: 0.0001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_H.prefab
+      hitFxPrefab: {fileID: 9189430378040415610, guid: 0039e5f22be43754faffd4180555bc85, type: 3}
+      hitFxScale: 1
+    bullets: []
+    moves:
+    - start: 0.3
+      dir: {x: 0, y: 0, z: 8}
+      time: 0.099
+    - start: 0.434
+      dir: {x: 0, y: 0, z: 1}
+      time: 0.3
+    speeds:
+    - start: 1.967
+      end: 2
+      speed: 0.2
+  skill2:
+    id: 5501
+    clip: skill02
+    duration: 4.267
+    breakTime: 0
+    nextId: 0
+    comboStart: 0
+    comboEnd: 0
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_skill02_physic.prefab
+      prefab: {fileID: 5198640459499902443, guid: 1b26ce5b2c5e81e4e8cdd36a833ec4ee, type: 3}
+      socket: base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0.034
+      end: 4.267
+      follow: 0
+      disappear: 1
+      softDel: 0
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_skill02_physic03.prefab
+      prefab: {fileID: 3069617486604317765, guid: 6c347ef377fa646439b708ce8449483b, type: 3}
+      socket: base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 2
+      end: 5
+      follow: 0
+      disappear: 3
+      softDel: 0.333
+      speed: 1
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_skill02_physic02.prefab
+      prefab: {fileID: 2746856305057148734, guid: 6b88b16fdcdadbf41a5483fef3593f92, type: 3}
+      socket: base
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 2.067
+      end: 5
+      follow: 0
+      disappear: 3
+      softDel: 0.333
+      speed: 1
+    hits:
+    - start: 0.1
+      end: 0.167
+      shape: 1
+      pos: {x: 0, y: 1, z: 2}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 6, y: 2, z: 4}
+      radius: 0.5
+      height: 1
+      damageMul: 0.1
+      maxHits: 1
+      interval: 0.001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_H.prefab
+      hitFxPrefab: {fileID: 9189430378040415610, guid: 0039e5f22be43754faffd4180555bc85, type: 3}
+      hitFxScale: 1
+    - start: 0.6
+      end: 1.5
+      shape: 1
+      pos: {x: 0, y: 1, z: 2}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 6, y: 2, z: 4}
+      radius: 0.5
+      height: 1
+      damageMul: 0.05
+      maxHits: 7
+      interval: 0.0001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_L.prefab
+      hitFxPrefab: {fileID: 2019946872834480762, guid: 79055311b6cd8e740b7d25cc704ee2c3, type: 3}
+      hitFxScale: 1
+    - start: 2.067
+      end: 2.167
+      shape: 1
+      pos: {x: 0, y: 1, z: 2}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 6, y: 2, z: 4}
+      radius: 0.5
+      height: 1
+      damageMul: 0.4
+      maxHits: 1
+      interval: 0.001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_H.prefab
+      hitFxPrefab: {fileID: 9189430378040415610, guid: 0039e5f22be43754faffd4180555bc85, type: 3}
+      hitFxScale: 1
+    bullets: []
+    moves: []
+    speeds: []
+  ultimate:
+    id: 6001
+    clip: skill_ex
+    duration: 3.634
+    breakTime: 0
+    nextId: 0
+    comboStart: 0
+    comboEnd: 0
+    fx:
+    - path: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_Exskill01_physic.prefab
+      prefab: {fileID: 2158116679753061753, guid: 3c4683e7f34853a4bbf810e80a058f19, type: 3}
+      socket: 
+      pos: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      start: 0
+      end: 3.667
+      follow: 1
+      disappear: 3
+      softDel: 0.333
+      speed: 1
+    hits:
+    - start: 2.1
+      end: 2.2
+      shape: 3
+      pos: {x: 0, y: 1.5, z: 6}
+      rot: {x: 0, y: 0, z: 0}
+      size: {x: 1, y: 1, z: 1}
+      radius: 6
+      height: 3
+      damageMul: 0.8
+      maxHits: 1
+      interval: 0.001
+      hitFx: Assets/Art/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_H.prefab
+      hitFxPrefab: {fileID: 9189430378040415610, guid: 0039e5f22be43754faffd4180555bc85, type: 3}
+      hitFxScale: 1
+    bullets: []
+    moves: []
+    speeds: []
+  emitters: []

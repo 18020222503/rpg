@@ -1,0 +1,1338 @@
+{
+ "heroId": "11001",
+ "sockets": [
+  {
+   "name": "center",
+   "bone": "Bip001 Spine",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "base",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "head_1_",
+   "bone": "Bip001 Head",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "weapon_1_",
+   "bone": "Bip001_weapon_01",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "tail_1_",
+   "bone": "body_24",
+   "pos": {
+    "x": -0.014,
+    "y": -0.027,
+    "z": -0.025
+   },
+   "rot": {
+    "x": -9.854,
+    "y": 163.964,
+    "z": -83.321
+   }
+  },
+  {
+   "name": "chest_1_",
+   "bone": "Bip001 Neck",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "hud",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 1.9,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "line",
+   "bone": "Bip001 Head",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "damage",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 1.7,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "face_1_",
+   "bone": "Bone_face",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "finger12_",
+   "bone": "Bip001 L Finger12",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  },
+  {
+   "name": "shieldLayer",
+   "bone": "character_root",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   }
+  }
+ ],
+ "combo": [
+  {
+   "id": 5001,
+   "clip": "atk01",
+   "duration": 1.667,
+   "breakTime": 0.867,
+   "nextId": 5002,
+   "comboStart": 0.167,
+   "comboEnd": 0.667,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk01.prefab",
+     "socket": "base",
+     "pos": {
+      "x": 0.8,
+      "y": 0.66,
+      "z": 0.4
+     },
+     "rot": {
+      "x": -2.665,
+      "y": -1.55,
+      "z": 21.115
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.134,
+     "end": 1.0,
+     "follow": false,
+     "disappear": 2,
+     "softDel": 0.1,
+     "speed": 1.0
+    }
+   ],
+   "hits": [
+    {
+     "start": 0.134,
+     "end": 0.2,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.25,
+      "z": 1.5
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 2.5,
+      "y": 2.5,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 1.0,
+     "maxHits": 1,
+     "interval": 0.001,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+     "hitFxScale": 1.0
+    }
+   ],
+   "bullets": [],
+   "moves": [],
+   "speeds": []
+  },
+  {
+   "id": 5002,
+   "clip": "atk02",
+   "duration": 2.0,
+   "breakTime": 1.0,
+   "nextId": 5004,
+   "comboStart": 0.134,
+   "comboEnd": 1.0,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk02.prefab",
+     "socket": "base",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.2,
+     "end": 1.0,
+     "follow": true,
+     "disappear": 1,
+     "softDel": 0.1,
+     "speed": 1.0
+    }
+   ],
+   "hits": [
+    {
+     "start": 0.2,
+     "end": 0.4,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 4.0,
+      "y": 2.0,
+      "z": 4.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 1.0,
+     "maxHits": 2,
+     "interval": 0.0001,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+     "hitFxScale": 1.0
+    }
+   ],
+   "bullets": [],
+   "moves": [
+    {
+     "start": 0.034,
+     "dir": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.5
+     },
+     "time": 0.2
+    }
+   ],
+   "speeds": []
+  },
+  {
+   "id": 5004,
+   "clip": "atk03",
+   "duration": 2.267,
+   "breakTime": 1.5,
+   "nextId": 5005,
+   "comboStart": 0.5,
+   "comboEnd": 1.5,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk03_dg01.prefab",
+     "socket": "base",
+     "pos": {
+      "x": -0.2,
+      "y": 0.5,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -21.0
+     },
+     "scale": {
+      "x": 0.8,
+      "y": 0.8,
+      "z": 0.8
+     },
+     "start": 0.067,
+     "end": 1.667,
+     "follow": true,
+     "disappear": 2,
+     "softDel": 0.1,
+     "speed": 1.0
+    },
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk03_dg02.prefab",
+     "socket": "base",
+     "pos": {
+      "x": 0.2,
+      "y": 0.2,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 15.0
+     },
+     "scale": {
+      "x": 0.8,
+      "y": 0.8,
+      "z": 0.8
+     },
+     "start": 0.234,
+     "end": 1.667,
+     "follow": true,
+     "disappear": 2,
+     "softDel": 0.1,
+     "speed": 1.0
+    },
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk03_dg01.prefab",
+     "socket": "base",
+     "pos": {
+      "x": 0.0,
+      "y": 0.4,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.467,
+     "end": 1.667,
+     "follow": true,
+     "disappear": 2,
+     "softDel": 0.1,
+     "speed": 1.0
+    },
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk03_dg02.prefab",
+     "socket": "base",
+     "pos": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.667,
+     "end": 1.667,
+     "follow": true,
+     "disappear": 2,
+     "softDel": 0.1,
+     "speed": 1.0
+    }
+   ],
+   "hits": [
+    {
+     "start": 0.1,
+     "end": 0.234,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.5,
+      "z": 1.5
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 2.0,
+      "y": 3.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 1.0,
+     "maxHits": 1,
+     "interval": 0.001,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 0.267,
+     "end": 0.367,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.5,
+      "z": 1.25
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 2.0,
+      "y": 3.0,
+      "z": 2.5
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 1.0,
+     "maxHits": 1,
+     "interval": 0.001,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 0.5,
+     "end": 0.567,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.5,
+      "z": 1.5
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 2.0,
+      "y": 3.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 1.0,
+     "maxHits": 1,
+     "interval": 0.001,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 0.7,
+     "end": 0.8,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.5,
+      "z": 1.25
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 2.0,
+      "y": 3.0,
+      "z": 2.5
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 1.0,
+     "maxHits": 1,
+     "interval": 0.001,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+     "hitFxScale": 1.0
+    }
+   ],
+   "bullets": [],
+   "moves": [],
+   "speeds": [
+    {
+     "start": 0.0,
+     "end": 0.8,
+     "speed": 1.2
+    }
+   ]
+  },
+  {
+   "id": 5005,
+   "clip": "atk04",
+   "duration": 2.867,
+   "breakTime": 1.667,
+   "nextId": 0,
+   "comboStart": 0.0,
+   "comboEnd": 0.0,
+   "fx": [
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk04_dg01.prefab",
+     "socket": "base",
+     "pos": {
+      "x": 0.0,
+      "y": 0.7,
+      "z": -0.5
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 30.0,
+      "z": 43.0
+     },
+     "scale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+     },
+     "start": 0.167,
+     "end": 2.267,
+     "follow": true,
+     "disappear": 1,
+     "softDel": 0.1,
+     "speed": 1.0
+    },
+    {
+     "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk04_dg01.prefab",
+     "socket": "base",
+     "pos": {
+      "x": -0.3,
+      "y": 0.3,
+      "z": -0.5
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -15.0
+     },
+     "scale": {
+      "x": 1.3,
+      "y": 1.0,
+      "z": 1.3
+     },
+     "start": 0.534,
+     "end": 2.767,
+     "follow": true,
+     "disappear": 1,
+     "softDel": 0.1,
+     "speed": 1.0
+    }
+   ],
+   "hits": [
+    {
+     "start": 0.234,
+     "end": 0.467,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 1.5,
+      "z": 0.5
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 3.0,
+      "y": 3.0,
+      "z": 3.0
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 1.0,
+     "maxHits": 1,
+     "interval": 0.0,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+     "hitFxScale": 1.0
+    },
+    {
+     "start": 0.734,
+     "end": 0.834,
+     "shape": 1,
+     "pos": {
+      "x": 0.0,
+      "y": 0.75,
+      "z": 0.0
+     },
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "size": {
+      "x": 4.5,
+      "y": 3.0,
+      "z": 4.5
+     },
+     "radius": 0.5,
+     "height": 1.0,
+     "damageMul": 1.0,
+     "maxHits": 1,
+     "interval": 0.001,
+     "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+     "hitFxScale": 1.0
+    }
+   ],
+   "bullets": [],
+   "moves": [
+    {
+     "start": 0.034,
+     "dir": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.5
+     },
+     "time": 0.167
+    },
+    {
+     "start": 0.167,
+     "dir": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 1.5
+     },
+     "time": 0.4
+    },
+    {
+     "start": 0.567,
+     "dir": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 1.5
+     },
+     "time": 0.167
+    },
+    {
+     "start": 1.667,
+     "dir": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.2
+     },
+     "time": 0.3
+    }
+   ],
+   "speeds": [
+    {
+     "start": 0.034,
+     "end": 0.1,
+     "speed": 0.3
+    },
+    {
+     "start": 0.3,
+     "end": 0.4,
+     "speed": 1.5
+    },
+    {
+     "start": 0.434,
+     "end": 0.5,
+     "speed": 0.33
+    }
+   ]
+  }
+ ],
+ "heavy": {
+  "id": 5101,
+  "clip": "atk_c",
+  "duration": 2.567,
+  "breakTime": 0.0,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_c_xl.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.034,
+    "end": 2.0,
+    "follow": true,
+    "disappear": 0,
+    "softDel": 0.05,
+    "speed": 1.5
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_c_Dimian.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 1.1,
+    "end": 2.334,
+    "follow": false,
+    "disappear": 2,
+    "softDel": 0.05,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_c.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 1.1,
+    "end": 2.334,
+    "follow": true,
+    "disappear": 3,
+    "softDel": 0.067,
+    "speed": 1.0
+   }
+  ],
+  "hits": [
+   {
+    "start": 1.1,
+    "end": 1.234,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 1.5,
+     "z": 1.5
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 2.5,
+     "y": 3.0,
+     "z": 4.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 1.0,
+    "maxHits": 1,
+    "interval": 0.001,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+    "hitFxScale": 1.0
+   }
+  ],
+  "bullets": [],
+  "moves": [
+   {
+    "start": 0.034,
+    "dir": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": -0.1
+    },
+    "time": 0.2
+   },
+   {
+    "start": 0.4,
+    "dir": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": -0.05
+    },
+    "time": 0.4
+   },
+   {
+    "start": 0.9,
+    "dir": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.4
+    },
+    "time": 0.067
+   },
+   {
+    "start": 0.967,
+    "dir": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 2.5
+    },
+    "time": 0.067
+   },
+   {
+    "start": 1.034,
+    "dir": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.3
+    },
+    "time": 0.1
+   },
+   {
+    "start": 1.5,
+    "dir": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.3
+    },
+    "time": 0.6
+   }
+  ],
+  "speeds": [
+   {
+    "start": 0.0,
+    "end": 0.9,
+    "speed": 2.0
+   }
+  ]
+ },
+ "skill1": {
+  "id": 5401,
+  "clip": "skill01",
+  "duration": 2.0,
+  "breakTime": 0.5,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill01.prefab",
+    "socket": "",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.234,
+    "end": 2.0,
+    "follow": true,
+    "disappear": 0,
+    "softDel": 0.0,
+    "speed": 1.0
+   }
+  ],
+  "hits": [],
+  "bullets": [
+   {
+    "start": 0.4,
+    "emitter": 1000
+   }
+  ],
+  "moves": [],
+  "speeds": []
+ },
+ "skill2": {
+  "id": 5501,
+  "clip": "skill02",
+  "duration": 2.267,
+  "breakTime": 1.0,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/pre_fx_skill02_body.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": -2.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.3,
+    "end": 1.4,
+    "follow": true,
+    "disappear": 0,
+    "softDel": 0.05,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill02.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": -1.5
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.3,
+    "end": 1.734,
+    "follow": false,
+    "disappear": 0,
+    "softDel": 0.05,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill02_end.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": -2.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.534,
+    "end": 1.8,
+    "follow": false,
+    "disappear": 2,
+    "softDel": 0.05,
+    "speed": 1.5
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill02_end.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.567,
+    "end": 1.4,
+    "follow": false,
+    "disappear": 0,
+    "softDel": 0.05,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill02_hit.prefab",
+    "socket": "base",
+    "pos": {
+     "x": 0.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.934,
+    "end": 1.967,
+    "follow": false,
+    "disappear": 2,
+    "softDel": 0.05,
+    "speed": 1.5
+   }
+  ],
+  "hits": [
+   {
+    "start": 0.5,
+    "end": 0.634,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 0.75,
+     "z": 1.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 1.5,
+     "y": 2.0,
+     "z": 2.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 0.0,
+    "maxHits": 2,
+    "interval": 0.0001,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+    "hitFxScale": 1.0
+   },
+   {
+    "start": 0.9,
+    "end": 1.1,
+    "shape": 1,
+    "pos": {
+     "x": 0.0,
+     "y": 0.75,
+     "z": 3.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 4.0,
+     "y": 2.5,
+     "z": 4.0
+    },
+    "radius": 0.5,
+    "height": 1.0,
+    "damageMul": 1.0,
+    "maxHits": 1,
+    "interval": 0.001,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+    "hitFxScale": 1.0
+   }
+  ],
+  "bullets": [],
+  "moves": [
+   {
+    "start": 0.334,
+    "dir": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 4.0
+    },
+    "time": 0.1
+   },
+   {
+    "start": 0.934,
+    "dir": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": -0.4
+    },
+    "time": 0.133
+   },
+   {
+    "start": 1.067,
+    "dir": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": -0.2
+    },
+    "time": 0.2
+   }
+  ],
+  "speeds": [
+   {
+    "start": 0.0,
+    "end": 0.334,
+    "speed": 1.5
+   },
+   {
+    "start": 0.667,
+    "end": 0.8,
+    "speed": 0.33
+   }
+  ]
+ },
+ "ultimate": {
+  "id": 6001,
+  "clip": "skill_ex",
+  "duration": 5.667,
+  "breakTime": 2.0,
+  "nextId": 0,
+  "comboStart": 0.0,
+  "comboEnd": 0.0,
+  "fx": [
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/pre_fx_skill_ex.prefab",
+    "socket": "",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.0,
+    "end": 4.667,
+    "follow": true,
+    "disappear": 0,
+    "softDel": 0.0,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/pre_fx_skill_ex_weapon_01.prefab",
+    "socket": "weapon_1_",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 0.0,
+    "end": 4.667,
+    "follow": true,
+    "disappear": 0,
+    "softDel": 0.0,
+    "speed": 1.0
+   },
+   {
+    "path": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/pre_skill_ex_explode.prefab",
+    "socket": "",
+    "pos": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 6.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "scale": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "start": 2.5,
+    "end": 5.6,
+    "follow": false,
+    "disappear": 0,
+    "softDel": 0.0,
+    "speed": 1.0
+   }
+  ],
+  "hits": [
+   {
+    "start": 3.1,
+    "end": 3.4,
+    "shape": 3,
+    "pos": {
+     "x": 0.0,
+     "y": 2.0,
+     "z": 6.0
+    },
+    "rot": {
+     "x": 0.0,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "size": {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+    },
+    "radius": 5.0,
+    "height": 3.0,
+    "damageMul": 0.0,
+    "maxHits": 1,
+    "interval": 0.0001,
+    "hitFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+    "hitFxScale": 1.0
+   }
+  ],
+  "bullets": [],
+  "moves": [],
+  "speeds": []
+ },
+ "emitters": [
+  {
+   "id": 1000,
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": -0.5
+   },
+   "rot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "mouths": 1,
+   "range": 0.0,
+   "speed": 15.0,
+   "accel": -15.0,
+   "minSpeed": 2.0,
+   "maxSpeed": 15.0,
+   "life": 1.5,
+   "penetrate": false,
+   "asset": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill01_bullet.prefab",
+   "assetScale": 1.0,
+   "assetPos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "assetRot": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "hurtFx": "Assets/Art/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab",
+   "hurtFxScale": 1.0,
+   "children": []
+  }
+ ]
+}
