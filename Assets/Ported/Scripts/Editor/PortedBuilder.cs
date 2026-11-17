@@ -21,8 +21,11 @@ namespace Ported.EditorTools
         const string GameScenePath = "Assets/Ported/Scenes/Ported_Game.unity";
         const string LoginScenePath = "Assets/Ported/Scenes/Ported_Login.unity";
         const string SourceScene = Art + "Scene/sc_10001002_xcb_lyq/sc_10001002_xcb_lyq.unity";
-        const string LoginPanelPrefab = Art + "Prefab/Login/LoginPanel.prefab";
-        const string LoginBg = Art + "UI/Sprite/BG/bg_login.png";
+        const string LoginBg = "Assets/Ported/Qq13/Start/UI/Sprite/bg_dl_01.png";
+        const string LoginLogo = "Assets/Ported/Qq13/Start/UI/Sprite/Logo/JP/img_dl_logo.png";
+        const string LoginButton = "Assets/Ported/Qq13/Start/UI/Sprite/Common/Btn/btn_A01.png";
+        const string LoginPlate = Art + "UI/Sprite/Login/plate_dl_ksdb.png";
+        const string LoginFont = Art + "UI/Font/CommonFont/NotoSansSC-Medium.ttf"; // 简体中文；SourceHanSansJP 缺很多简体字
 
         class HeroSpec
         {
@@ -37,12 +40,12 @@ namespace Ported.EditorTools
 
         static readonly HeroSpec[] Heroes =
         {
-            new HeroSpec("zhurengong_A", "Protagonist A", "Ch_11501_zhurengong_A", "11501",
+            new HeroSpec("zhurengong_A", "主角", "Ch_11501_zhurengong_A", "11501",
                 "prefab_face/ch_A_face_A.prefab", "prefab_hair/ch_A_2_hair.prefab", "prefab_brow/ch_A_meimao_A.prefab"),
-            new HeroSpec("aocunlin", "Aocunlin", "Ch_11001_aocunlin", "11001"),
-            new HeroSpec("shihuimei", "Shihuimei", "Ch_11003_shihuimei", "11003"),
-            new HeroSpec("shenmuchuyun", "Shenmuchuyun", "Ch_11005_shenmuchuyun", "11005"),
-            new HeroSpec("nuoyihaosi", "Nuoyihaosi", "Ch_11008_nuoyihaosi", "11008"),
+            new HeroSpec("aocunlin", "奥村磷", "Ch_11001_aocunlin", "11001"),
+            new HeroSpec("shihuimei", "杜山诗惠美", "Ch_11003_shihuimei", "11003"),
+            new HeroSpec("shenmuchuyun", "神木出云", "Ch_11005_shenmuchuyun", "11005"),
+            new HeroSpec("nuoyihaosi", "诺伊豪斯", "Ch_11008_nuoyihaosi", "11008"),
         };
 
         static string ShotDir => Path.GetFullPath(Application.dataPath + "/../../../port_tools/shots");
@@ -60,7 +63,7 @@ namespace Ported.EditorTools
                 Directory.CreateDirectory(ShotDir);
                 var prefabs = BuildHeroPrefabs();
                 BuildGameScene(prefabs);
-                BuildLoginScene();
+                BuildLoginScene(prefabs);
                 UpdateBuildSettings();
                 AssetDatabase.SaveAssets();
                 Debug.Log("[PortedBuilder] 完成。登录场景 " + LoginScenePath + "，游戏场景 " + GameScenePath);
@@ -92,10 +95,11 @@ namespace Ported.EditorTools
                 AttachParts(root, model, spec);
 
                 var cc = root.AddComponent<CharacterController>();
-                cc.center = new Vector3(0f, 0.9f, 0f);
                 cc.height = 1.8f;
                 cc.radius = 0.3f;
                 cc.stepOffset = 0.35f;
+                // CharacterController 和地面之间会留 skinWidth 的间隙，胶囊整体抬高这么多，模型脚底才贴地
+                cc.center = new Vector3(0f, cc.height * 0.5f + cc.skinWidth, 0f);
 
                 var hc = root.AddComponent<HeroController>();
                 hc.actions = BuildActionSet(spec);
@@ -109,38 +113,44 @@ namespace Ported.EditorTools
             return list.ToArray();
         }
 
-        // 主角的头发/脸/眉毛是独立预制体，原项目运行时按骨骼名绑到身体骨架上，这里在装配时做同样的事
+        // 主角的头发/脸/眉毛是独立预制体，自带一根 Bone_Head_A 骨骼（身体骨架里没有这根）。
+        // 原项目的做法：挂到身体上对应的 fashion_hair / fashion_face / fashion_brow 挂点下（挂点在头部骨骼下），
+        // 部件保留自己的骨骼，跟着头一起动，不重新绑定骨骼
         static void AttachParts(GameObject root, GameObject model, HeroSpec spec)
         {
             if (spec.parts == null || spec.parts.Length == 0) return;
-
-            var bones = new Dictionary<string, Transform>();
-            foreach (var tr in model.GetComponentsInChildren<Transform>(true))
-                if (!bones.ContainsKey(tr.name)) bones[tr.name] = tr;
 
             foreach (var rel in spec.parts)
             {
                 var part = AssetDatabase.LoadAssetAtPath<GameObject>(HeroDir + spec.folder + "/" + rel);
                 if (part == null) { Debug.LogWarning("[PortedBuilder] 找不到部件 " + rel); continue; }
 
-                var inst = (GameObject)PrefabUtility.InstantiatePrefab(part);
-                inst.transform.SetParent(root.transform, false);
+                // prefab_hair/xxx.prefab → fashion_hair
+                var folder = Path.GetFileName(Path.GetDirectoryName(rel));
+                var slotName = "fashion_" + (folder.StartsWith("prefab_") ? folder.Substring("prefab_".Length) : folder);
+                var slot = PortedFx.FindDeep(model.transform, slotName);
+                if (slot == null)
+                {
+                    Debug.LogWarning($"[PortedBuilder] {spec.display} 找不到挂点 {slotName}，部件 {rel} 没挂");
+                    continue;
+                }
+
+                var inst = (GameObject)PrefabUtility.InstantiatePrefab(part, slot);
+                inst.transform.localPosition = Vector3.zero;
+                inst.transform.localRotation = Quaternion.identity;
+                inst.transform.localScale = Vector3.one;
+                // 部件上的 Animator 是表情用的，这里不播表情，关掉免得和身体动画打架
                 foreach (var a in inst.GetComponentsInChildren<Animator>(true)) a.enabled = false;
 
-                foreach (var smr in inst.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+                // 部件里同时有高模和 _lod 低模时只显示高模
+                var smrs = inst.GetComponentsInChildren<SkinnedMeshRenderer>(true);
+                var hasMain = smrs.Any(s => !s.name.EndsWith("_lod"));
+                foreach (var smr in smrs)
                 {
-                    var old = smr.bones;
-                    var mapped = new Transform[old.Length];
-                    var hit = 0;
-                    for (var i = 0; i < old.Length; i++)
-                    {
-                        if (old[i] != null && bones.TryGetValue(old[i].name, out var b)) { mapped[i] = b; hit++; }
-                    }
-                    smr.bones = mapped;
-                    if (smr.rootBone != null && bones.TryGetValue(smr.rootBone.name, out var rb)) smr.rootBone = rb;
                     smr.updateWhenOffscreen = true;
-                    Debug.Log($"[PortedBuilder] 部件 {Path.GetFileName(rel)}/{smr.name}: 骨骼匹配 {hit}/{old.Length}");
+                    if (hasMain && smr.name.EndsWith("_lod")) smr.enabled = false;
                 }
+                Debug.Log($"[PortedBuilder] 部件 {Path.GetFileName(rel)} 挂到 {slotName}（父骨骼 {(slot.parent != null ? slot.parent.name : "-")}）");
             }
         }
 
@@ -216,6 +226,7 @@ namespace Ported.EditorTools
                 .Where(r => r.enabled && r.gameObject.activeInHierarchy).ToArray();
             Debug.Log($"[PortedBuilder] 场景渲染器 {renderers.Length} 个");
 
+            MakeVolumeCollidersTriggers();
             var colliderCount = AddGroundColliders(renderers);
 
             Vector3 spawn;
@@ -231,6 +242,7 @@ namespace Ported.EditorTools
             boot.spawnPoint = spawn;
             boot.fallbackGroundY = groundY;
             boot.fxBloomShader = AssetDatabase.LoadAssetAtPath<Shader>("Assets/Ported/Shaders/FXBloom.shader");
+            boot.blobShadowShader = AssetDatabase.LoadAssetAtPath<Shader>("Assets/Ported/Shaders/BlobShadowApply.shader");
 
             Physics.SyncTransforms();
             CaptureGame(scene, heroPrefabs, spawn);
@@ -274,11 +286,40 @@ namespace Ported.EditorTools
             Debug.Log($"[PortedBuilder] 光照已改为实时，场景灯光 {lights.Length} 盏");
         }
 
-        // 把又大又扁的网格当成地面，补 MeshCollider
-        // 地面碰撞：原场景的碰撞体在子场景里，没拷过来。场景自带的 NavMesh 是按真实地面烘焙的，
-        // 把它的三角面做成一张网格碰撞体，角色就站在可走区域上。HLOD 远景模型、水面这些不是地面，不加碰撞
+        // 后处理 Volume 用碰撞体圈出生效范围（qqnm_VolumeProfile_024 上有个 449×49×367 米的盒子），
+        // 原项目里它不挡人；这里不是触发器，角色会站到盒子顶上。改成触发器，Volume 照样按范围生效
+        static void MakeVolumeCollidersTriggers()
+        {
+            var n = 0;
+            foreach (var v in UnityEngine.Object.FindObjectsByType<UnityEngine.Rendering.Volume>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                foreach (var c in v.GetComponents<Collider>())
+                {
+                    if (c.isTrigger) continue;
+                    c.isTrigger = true;
+                    n++;
+                }
+            Debug.Log($"[PortedBuilder] Volume 碰撞体改成触发器 {n} 个");
+        }
+
+        // 地面碰撞：优先用原场景自带的碰撞（sc_Collider_XCB_LYD，按真实地表做的）。
+        // 出生点下方打不到它时，才用场景 NavMesh 的三角面补一张地面（NavMesh 比地表略高，会有一点悬空）
         static int AddGroundColliders(Renderer[] renderers)
         {
+            Physics.SyncTransforms();
+            var center = Vector3.zero;
+            if (renderers.Length > 0)
+            {
+                var xs = renderers.Select(r => r.bounds.center.x).OrderBy(v => v).ToArray();
+                var zs = renderers.Select(r => r.bounds.center.z).OrderBy(v => v).ToArray();
+                center = new Vector3(xs[xs.Length / 2], 0f, zs[zs.Length / 2]);
+            }
+            if (UnityEngine.AI.NavMesh.SamplePosition(center, out var navHit, 500f, UnityEngine.AI.NavMesh.AllAreas)
+                && Physics.Raycast(navHit.position + Vector3.up * 5f, Vector3.down, out var groundHit, 20f, ~0, QueryTriggerInteraction.Ignore))
+            {
+                Debug.Log($"[PortedBuilder] 出生点附近已有原场景地面碰撞 {groundHit.collider.name}（y={groundHit.point.y:0.00}，NavMesh y={navHit.position.y:0.00}），不再补 NavMesh 地面");
+                return 0;
+            }
+
             var tri = UnityEngine.AI.NavMesh.CalculateTriangulation();
             if (tri.vertices == null || tri.vertices.Length == 0)
             {
@@ -332,8 +373,10 @@ namespace Ported.EditorTools
                 var tr = h.collider.transform;
                 var path = tr.name;
                 for (var p = tr.parent; p != null && path.Length < 120; p = p.parent) path = p.name + "/" + path;
-                var mat = h.collider.GetComponent<Renderer>()?.sharedMaterial;
-                Debug.Log($"[PortedBuilder] 诊断   y={h.point.y:0.00} {path} 材质 {(mat != null ? mat.name : "-")}");
+                // Unity 组件不能用 ?.，没有组件时 GetComponent 返回的是“假 null”
+                var rend = h.collider.GetComponent<Renderer>();
+                var mat = rend != null ? rend.sharedMaterial : null;
+                Debug.Log($"[PortedBuilder] 诊断   y={h.point.y:0.00} {path} 触发器 {h.collider.isTrigger} 层 {LayerMask.LayerToName(h.collider.gameObject.layer)} 材质 {(mat != null ? mat.name : "-")}");
             }
 
             foreach (var mc in temp) UnityEngine.Object.DestroyImmediate(mc);
@@ -354,8 +397,12 @@ namespace Ported.EditorTools
 
             if (UnityEngine.AI.NavMesh.SamplePosition(center, out var hit, 500f, UnityEngine.AI.NavMesh.AllAreas))
             {
-                spawn = hit.position + Vector3.up * 0.5f;
+                // NavMesh 只用来找能站人的位置，高度以碰撞体表面为准
                 groundY = hit.position.y;
+                Physics.SyncTransforms();
+                if (Physics.Raycast(hit.position + Vector3.up * 5f, Vector3.down, out var g, 20f, ~0, QueryTriggerInteraction.Ignore))
+                    groundY = g.point.y;
+                spawn = new Vector3(hit.position.x, groundY + 0.5f, hit.position.z);
                 return;
             }
 
@@ -372,9 +419,11 @@ namespace Ported.EditorTools
             cam.clearFlags = CameraClearFlags.SolidColor;
             cam.backgroundColor = new Color(0.55f, 0.7f, 0.9f);
             camGo.AddComponent<PortedFXBloom>().shader = AssetDatabase.LoadAssetAtPath<Shader>("Assets/Ported/Shaders/FXBloom.shader");
+            camGo.AddComponent<PortedBlobShadow>().applyShader = AssetDatabase.LoadAssetAtPath<Shader>("Assets/Ported/Shaders/BlobShadowApply.shader");
 
             var ground = spawn;
-            if (Physics.Raycast(new Vector3(spawn.x, spawn.y + 300f, spawn.z), Vector3.down, out var hit, 1000f))
+            // 和游戏里一样忽略触发器，否则会打到 Volume 的范围盒顶上
+            if (Physics.Raycast(new Vector3(spawn.x, spawn.y + 300f, spawn.z), Vector3.down, out var hit, 1000f, ~0, QueryTriggerInteraction.Ignore))
                 ground = hit.point;
             else
                 Debug.LogWarning("[PortedBuilder] 出生点下方没有碰撞体（游戏里会补隐形地面）");
@@ -387,6 +436,7 @@ namespace Ported.EditorTools
             {
                 var inst = (GameObject)PrefabUtility.InstantiatePrefab(heroPrefabs[i]);
                 inst.transform.position = ground;
+                PortedBlobShadow.Register(inst);
                 var animator = inst.GetComponentInChildren<Animator>();
                 if (animator != null)
                 {
@@ -407,7 +457,27 @@ namespace Ported.EditorTools
                     foreach (var a in AllActions(set))
                         CaptureAction(cam, inst, set, a, ground, Heroes[i].id);
                 }
+                PortedBlobShadow.Unregister(inst);
                 UnityEngine.Object.DestroyImmediate(inst);
+            }
+
+            // 游戏里实际看到的画面：用跟随相机的默认角度和距离摆相机
+            if (heroPrefabs.Length > 0)
+            {
+                var hero = (GameObject)PrefabUtility.InstantiatePrefab(heroPrefabs[Mathf.Min(1, heroPrefabs.Length - 1)]);
+                hero.transform.position = ground;
+                PortedBlobShadow.Register(hero);
+                var anim = hero.GetComponentsInChildren<Animator>().FirstOrDefault(x => x.HasState(0, Animator.StringToHash("idle")));
+                if (anim != null) { anim.Play("idle", 0, 0.2f); anim.Update(0.05f); }
+
+                var follow = camGo.AddComponent<PortedFollowCamera>();
+                follow.Pose(ground, out var p, out var r);
+                camGo.transform.SetPositionAndRotation(p, r);
+                cam.fieldOfView = 60f;
+                Capture(cam, Path.Combine(ShotDir, "gameplay_view.png"), 1280, 720);
+
+                PortedBlobShadow.Unregister(hero);
+                UnityEngine.Object.DestroyImmediate(hero);
             }
 
             UnityEngine.Object.DestroyImmediate(camGo);
@@ -496,56 +566,102 @@ namespace Ported.EditorTools
 
         // ---------- 登录场景 ----------
 
-        static void BuildLoginScene()
+        // 角色头衔，顺序和 Heroes 一致。只填 qq13 cardrole_cfg 里查得到的（奥村磷、杜山诗惠美），其余留空
+        static readonly string[] HeroTitles = { "", "驱魔候选生", "驱魔候选生", "", "" };
+
+        static void BuildLoginScene(GameObject[] heroPrefabs)
         {
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
             var camGo = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener));
             camGo.tag = "MainCamera";
             var cam = camGo.GetComponent<Camera>();
-            cam.clearFlags = CameraClearFlags.SolidColor;
-            cam.backgroundColor = Color.black;
-            cam.orthographic = true;
+            SetupLoginCamera(cam);
 
-            var canvasGo = new GameObject("Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
-            var canvas = canvasGo.GetComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceCamera;
-            canvas.worldCamera = cam;
-            canvas.planeDistance = 10f;
-            var scaler = canvasGo.GetComponent<CanvasScaler>();
-            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1920f, 1080f);
-            scaler.matchWidthOrHeight = 0.5f;
-
-            var bgSprite = AssetDatabase.LoadAssetAtPath<Sprite>(LoginBg);
-            if (bgSprite != null)
-            {
-                var bg = new GameObject("Background", typeof(RectTransform), typeof(Image));
-                bg.transform.SetParent(canvasGo.transform, false);
-                Stretch((RectTransform)bg.transform);
-                var img = bg.GetComponent<Image>();
-                img.sprite = bgSprite;
-                img.preserveAspect = false;
-            }
-            else
-            {
-                Debug.LogWarning("[PortedBuilder] 没找到登录背景 " + LoginBg);
-            }
-
-            var panelSrc = AssetDatabase.LoadAssetAtPath<GameObject>(LoginPanelPrefab);
-            if (panelSrc == null) throw new Exception("找不到 " + LoginPanelPrefab);
-            var panel = (GameObject)PrefabUtility.InstantiatePrefab(panelSrc, canvasGo.transform);
-            Stretch((RectTransform)panel.transform);
+            // 角色选择页的模型需要光：一盏从相机这边照过去的方向光 + 中性环境光
+            var lightGo = new GameObject("Directional Light");
+            var light = lightGo.AddComponent<Light>();
+            light.type = LightType.Directional;
+            light.intensity = 1.2f;
+            light.color = new Color(1f, 0.96f, 0.9f);
+            light.shadows = LightShadows.Soft;
+            lightGo.transform.rotation = Quaternion.Euler(35f, 25f, 0f);
+            RenderSettings.sun = light;
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
+            RenderSettings.ambientSkyColor = new Color(0.75f, 0.8f, 0.9f);
+            RenderSettings.ambientEquatorColor = new Color(0.55f, 0.58f, 0.62f);
+            RenderSettings.ambientGroundColor = new Color(0.35f, 0.33f, 0.3f);
+            RenderSettings.fog = false;
 
             var ctrlGo = new GameObject("PortedLogin");
             var ctrl = ctrlGo.AddComponent<PortedLoginController>();
-            ctrl.loginPanel = panel;
+            ctrl.background = LoadSprite(LoginBg);
+            ctrl.logo = LoadSprite(LoginLogo);
+            ctrl.button = LoadSprite(LoginButton);
+            ctrl.plate = LoadSprite(LoginPlate);
+            ctrl.font = AssetDatabase.LoadAssetAtPath<Font>(LoginFont);
+            if (ctrl.font == null) Debug.LogWarning("[PortedBuilder] 没找到登录字体 " + LoginFont);
             ctrl.heroNames = Heroes.Select(h => h.display).ToArray();
+            ctrl.heroTitles = HeroTitles;
+            ctrl.heroPrefabs = heroPrefabs;
+            ctrl.sceneCamera = cam;
 
             new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
 
-            Capture(cam, Path.Combine(ShotDir, "login.png"), 1280, 720);
+            // 先截图（临时对象截完就删），再保存场景
+            CaptureLogin(ctrl);
             EditorSceneManager.SaveScene(scene, LoginScenePath);
+        }
+
+        // 相机在模型正前方 4.6 米、略高于腰部，竖直视野 30 度，正好框住 2 米高的角色
+        static void SetupLoginCamera(Camera cam)
+        {
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            cam.backgroundColor = Color.black;
+            cam.fieldOfView = 30f;
+            cam.nearClipPlane = 0.1f;
+            cam.farClipPlane = 100f;
+            cam.transform.position = new Vector3(0f, 1.0f, -4.6f);
+            cam.transform.LookAt(new Vector3(0f, 0.92f, 0f));
+        }
+
+        static Sprite LoadSprite(string path)
+        {
+            var s = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            if (s == null) Debug.LogWarning("[PortedBuilder] 没找到登录图片 " + path);
+            return s;
+        }
+
+        // 截图检查：在编辑器里临时搭一份界面，截首页和角色选择两张。
+        // 界面层平时是 Overlay，相机截不到，截图时临时改成屏幕空间相机模式、放在模型前面
+        static void CaptureLogin(PortedLoginController src)
+        {
+            var camGo = new GameObject("__LoginShotCam", typeof(Camera));
+            var cam = camGo.GetComponent<Camera>();
+            SetupLoginCamera(cam);
+
+            var go = new GameObject("__LoginPreview");
+            var ctrl = go.AddComponent<PortedLoginController>();
+            ctrl.background = src.background; ctrl.logo = src.logo; ctrl.button = src.button; ctrl.plate = src.plate;
+            ctrl.font = src.font; ctrl.heroNames = src.heroNames; ctrl.heroTitles = src.heroTitles;
+            ctrl.heroPrefabs = src.heroPrefabs; ctrl.sceneCamera = cam;
+            ctrl.BuildUI();
+
+            var canvas = go.GetComponentsInChildren<Canvas>(true).First(c => c.name == "LoginCanvas");
+            canvas.renderMode = RenderMode.ScreenSpaceCamera;
+            canvas.worldCamera = cam;
+            canvas.planeDistance = 1f;
+
+            Canvas.ForceUpdateCanvases();
+            Capture(cam, Path.Combine(ShotDir, "login.png"), 1280, 720);
+
+            ctrl.ShowSelect();
+            ctrl.Select(1);
+            Canvas.ForceUpdateCanvases();
+            Capture(cam, Path.Combine(ShotDir, "login_select.png"), 1280, 720);
+
+            UnityEngine.Object.DestroyImmediate(go);
+            UnityEngine.Object.DestroyImmediate(camGo);
         }
 
         static void Stretch(RectTransform rt)

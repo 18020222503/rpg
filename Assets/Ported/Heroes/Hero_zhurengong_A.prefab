@@ -32,9 +32,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2772237508560602254}
-  - {fileID: 801315791836356732}
-  - {fileID: 5382498775494087358}
-  - {fileID: 3846633106921151910}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &7522353539832004738
@@ -61,7 +58,7 @@ CharacterController:
   m_StepOffset: 0.35
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 0.97999996, z: 0}
 --- !u!114 &4460778796574007481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,12 +144,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 423293057813080982, guid: 49403defd5c164447aa938a8dabceb74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 801315791836356732}
+    - targetCorrespondingSourceObject: {fileID: 73981087225058309, guid: 49403defd5c164447aa938a8dabceb74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5382498775494087358}
+    - targetCorrespondingSourceObject: {fileID: 7519155491953986726, guid: 49403defd5c164447aa938a8dabceb74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3846633106921151910}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49403defd5c164447aa938a8dabceb74, type: 3}
 --- !u!4 &2772237508560602254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2138271388632138037, guid: 49403defd5c164447aa938a8dabceb74, type: 3}
+  m_PrefabInstance: {fileID: 4311173190115657147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4238600028877066686 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 73981087225058309, guid: 49403defd5c164447aa938a8dabceb74, type: 3}
+  m_PrefabInstance: {fileID: 4311173190115657147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4470820882987511341 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 423293057813080982, guid: 49403defd5c164447aa938a8dabceb74, type: 3}
+  m_PrefabInstance: {fileID: 4311173190115657147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6020526792284064029 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7519155491953986726, guid: 49403defd5c164447aa938a8dabceb74, type: 3}
   m_PrefabInstance: {fileID: 4311173190115657147}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5946925763527983805
@@ -161,16 +182,8 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2512160986096469964}
+    m_TransformParent: {fileID: 6020526792284064029}
     m_Modifications:
-    - target: {fileID: 1753404939005814101, guid: 38ad1b0a27c843441ab9de65a4f93ca6, type: 3}
-      propertyPath: 'm_Bones.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1753404939005814101, guid: 38ad1b0a27c843441ab9de65a4f93ca6, type: 3}
-      propertyPath: 'm_Bones.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1753404939005814101, guid: 38ad1b0a27c843441ab9de65a4f93ca6, type: 3}
       propertyPath: m_UpdateWhenOffscreen
       value: 1
@@ -239,19 +252,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2512160986096469964}
+    m_TransformParent: {fileID: 4470820882987511341}
     m_Modifications:
     - target: {fileID: 2886596302865850393, guid: 28d5e3fc759c7d646a844aabd16fe6d0, type: 3}
-      propertyPath: 'm_Bones.Array.data[0]'
-      value: 
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2886596302865850393, guid: 28d5e3fc759c7d646a844aabd16fe6d0, type: 3}
       propertyPath: m_UpdateWhenOffscreen
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4434004273589231841, guid: 28d5e3fc759c7d646a844aabd16fe6d0, type: 3}
-      propertyPath: 'm_Bones.Array.data[0]'
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4434004273589231841, guid: 28d5e3fc759c7d646a844aabd16fe6d0, type: 3}
       propertyPath: m_UpdateWhenOffscreen
@@ -321,7 +330,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2512160986096469964}
+    m_TransformParent: {fileID: 4238600028877066686}
     m_Modifications:
     - target: {fileID: 1677404582102703751, guid: 5dd5224f464163c4a854fb66e7cfb3be, type: 3}
       propertyPath: m_LocalPosition.x
@@ -370,10 +379,6 @@ PrefabInstance:
     - target: {fileID: 4276602319322518308, guid: 5dd5224f464163c4a854fb66e7cfb3be, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012937358086828122, guid: 5dd5224f464163c4a854fb66e7cfb3be, type: 3}
-      propertyPath: 'm_Bones.Array.data[0]'
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6012937358086828122, guid: 5dd5224f464163c4a854fb66e7cfb3be, type: 3}
       propertyPath: m_UpdateWhenOffscreen

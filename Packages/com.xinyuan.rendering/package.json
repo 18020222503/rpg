@@ -1,0 +1,10 @@
+{
+  "name": "com.xinyuan.rendering",
+  "displayName": "XYRendering (qq13 port)",
+  "version": "0.2.326-urp17",
+  "unity": "6000.3",
+  "description": "qq13 的 com.xinyuan.rendering 移植到 URP 17，只包含迁移资源用到的 shader 和角色渲染脚本。包名保持不变，原 shader 的 include 路径和 GUID 不用改。",
+  "dependencies": {
+    "com.unity.render-pipelines.universal": "17.3.0"
+  }
+}

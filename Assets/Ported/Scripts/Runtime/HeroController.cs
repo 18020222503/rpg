@@ -56,11 +56,17 @@ namespace Ported
         {
             controller = GetComponent<CharacterController>();
             animator = FindBodyAnimator();
+            PortedBlobShadow.Register(gameObject);
             if (animator != null)
             {
                 animator.applyRootMotion = false;
                 animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
             }
+        }
+
+        void OnDestroy()
+        {
+            PortedBlobShadow.Unregister(gameObject);
         }
 
         void Start()

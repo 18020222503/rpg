@@ -1,0 +1,118 @@
+#ifndef PARTICLES_INSTANCING_INCLUDED
+#define PARTICLES_INSTANCING_INCLUDED
+
+
+struct ParticlesInstancingDataGeneral //通用特效Intancing Data
+{
+    float3x4 transform;
+    uint color;
+    float4 customData1;
+    float4 customData2;
+    float animFrame;
+    float animBlend; 
+};
+
+
+// General FX Instancing Data
+#ifdef DEC_PARTICLE_GENERAL_INSTANCING_DATA
+#define UNITY_PARTICLE_INSTANCE_DATA ParticlesInstancingDataGeneral
+#endif
+
+//#define UNITY_PARTICLE_INSTANCE_DATA_NO_ANIM_FRAME
+
+
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ParticlesInstancing.hlsl"
+
+
+
+
+half4 GetParticleColor(half4 color) 
+{
+#if defined(UNITY_PARTICLE_INSTANCING_ENABLED)
+#if !defined(UNITY_PARTICLE_INSTANCE_DATA_NO_COLOR)
+    UNITY_PARTICLE_INSTANCE_DATA data = unity_ParticleInstanceData[unity_InstanceID];
+    color = lerp(half4(1.0, 1.0, 1.0, 1.0), color, unity_ParticleUseMeshColors);
+    color *= UnpackFromR8G8B8A8(data.color);
+#endif
+#endif
+    return color;
+}
+
+
+void GetParticleTexcoords(out float2 outputTexcoord, out float3 outputTexcoord2AndBlend, in float4 inputTexcoords, in float inputBlend)
+{
+#if defined(UNITY_PARTICLE_INSTANCING_ENABLED)
+    if (unity_ParticleUVShiftData.x != 0.0)
+    {
+        UNITY_PARTICLE_INSTANCE_DATA data = unity_ParticleInstanceData[unity_InstanceID];
+
+        float numTilesX = unity_ParticleUVShiftData.y;
+        float2 animScale = unity_ParticleUVShiftData.zw;
+#ifdef UNITY_PARTICLE_INSTANCE_DATA_NO_ANIM_FRAME
+        float sheetIndex = 0.0;
+#else
+        float sheetIndex = data.animFrame;
+#endif
+
+        float index0 = floor(sheetIndex);
+        float vIdx0 = floor(index0 / numTilesX);
+        float uIdx0 = floor(index0 - vIdx0 * numTilesX);
+        float2 offset0 = float2(uIdx0 * animScale.x, (1.0 - animScale.y) - vIdx0 * animScale.y); // Copied from built-in as is and it looks like upside-down flip
+
+        outputTexcoord = inputTexcoords.xy * animScale.xy + offset0.xy;
+
+#ifdef _FLIPBOOKBLENDING_ON
+        float index1 = floor(sheetIndex + 1.0);
+        float vIdx1 = floor(index1 / numTilesX);
+        float uIdx1 = floor(index1 - vIdx1 * numTilesX);
+        float2 offset1 = float2(uIdx1 * animScale.x, (1.0 - animScale.y) - vIdx1 * animScale.y);
+
+        outputTexcoord2AndBlend.xy = inputTexcoords.xy * animScale.xy + offset1.xy;
+        outputTexcoord2AndBlend.z = frac(sheetIndex);
+#endif
+    }
+    else
+#endif
+    {
+        outputTexcoord = inputTexcoords.xy;
+#ifdef _FLIPBOOKBLENDING_ON
+        outputTexcoord2AndBlend.xy = inputTexcoords.zw;
+        outputTexcoord2AndBlend.z = inputBlend;
+#endif
+    }
+
+#ifndef _FLIPBOOKBLENDING_ON
+    outputTexcoord2AndBlend.xy = inputTexcoords.xy;
+    outputTexcoord2AndBlend.z = 0.5;
+#endif
+}
+
+
+void GetParticleTexcoords(out float2 outputTexcoord, in float2 texcoord)
+{
+    float3 texcoord2AndBlend = 0.0f;
+    GetParticleTexcoords(outputTexcoord, texcoord2AndBlend, texcoord.xyxy, 0);
+}
+
+
+void GetParticleCustomDatas(inout half4 customData1, inout half4 customData2)
+{
+#ifdef UNITY_PARTICLE_INSTANCING_ENABLED
+    UNITY_PARTICLE_INSTANCE_DATA data = unity_ParticleInstanceData[unity_InstanceID];
+    customData1 = data.customData1;
+    customData2 = data.customData2;
+#endif
+}
+
+
+real4 GetParticleCustomData(real4 customData)
+{
+#ifdef UNITY_PARTICLE_INSTANCING_ENABLED
+    UNITY_PARTICLE_INSTANCE_DATA data = unity_ParticleInstanceData[unity_InstanceID];
+    return data.customData1;
+#endif
+    return customData;
+}
+
+
+#endif //PARTICLES_INSTANCING_INCLUDED

@@ -16,6 +16,7 @@ namespace Ported
 
         public bool spawnDummies = true;
         public Shader fxBloomShader;
+        public Shader blobShadowShader;
 
         HeroController hero;
         string heroName = "";
@@ -51,10 +52,17 @@ namespace Ported
             if (bloom == null) bloom = cam.gameObject.AddComponent<PortedFXBloom>();
             if (bloom.shader == null) bloom.shader = fxBloomShader;
 
+            // 原项目的角色脚下阴影
+            var blob = cam.GetComponent<PortedBlobShadow>();
+            if (blob == null) blob = cam.gameObject.AddComponent<PortedBlobShadow>();
+            if (blob.applyShader == null) blob.applyShader = blobShadowShader;
+
             var follow = cam.GetComponent<PortedFollowCamera>();
             if (follow == null) follow = cam.gameObject.AddComponent<PortedFollowCamera>();
             follow.target = go.transform;
-            cam.transform.position = pos + new Vector3(0f, 3f, -6f);
+            follow.Pose(pos, out var camPos, out var camRot);
+            cam.transform.SetPositionAndRotation(camPos, camRot);
+            cam.farClipPlane = Mathf.Max(cam.farClipPlane, 600f);
             if (hero != null) hero.cameraTransform = cam.transform;
 
             if (spawnDummies) SpawnDummies(pos);
