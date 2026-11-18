@@ -14,16 +14,16 @@ namespace Ported.EditorTools
     // 把移植进来的资源装配成可玩的内容：角色预制体（带技能）、登录场景、游戏场景，并写进 Build Settings。
     public static class PortedBuilder
     {
-        const string Art = "Assets/Ported/Qq13/Art/";
+        const string Art = "Assets/Artist/Qq13/Art/";
         const string HeroDir = Art + "Character/CH_Hero/";
         const string DataDir = "Assets/Ported/Data/";
         const string OutHeroes = "Assets/Ported/Heroes/";
-        const string GameScenePath = "Assets/Ported/Scenes/Ported_Game.unity";
-        const string LoginScenePath = "Assets/Ported/Scenes/Ported_Login.unity";
-        const string SourceScene = Art + "Scene/sc_10001002_xcb_lyq/sc_10001002_xcb_lyq.unity";
-        const string LoginBg = "Assets/Ported/Qq13/Start/UI/Sprite/bg_dl_01.png";
-        const string LoginLogo = "Assets/Ported/Qq13/Start/UI/Sprite/Logo/JP/img_dl_logo.png";
-        const string LoginButton = "Assets/Ported/Qq13/Start/UI/Sprite/Common/Btn/btn_A01.png";
+        const string GameScenePath = "Assets/Scenes/Ported_Game.unity";
+        const string LoginScenePath = "Assets/Scenes/Ported_Login.unity";
+        const string SourceScene = "Assets/Scenes/sc_10001002_xcb_lyq.unity";
+        const string LoginBg = "Assets/Artist/Qq13/Start/UI/Sprite/bg_dl_01.png";
+        const string LoginLogo = "Assets/Artist/Qq13/Start/UI/Sprite/Logo/JP/img_dl_logo.png";
+        const string LoginButton = "Assets/Artist/Qq13/Start/UI/Sprite/Common/Btn/btn_A01.png";
         const string LoginPlate = Art + "UI/Sprite/Login/plate_dl_ksdb.png";
         const string LoginFont = Art + "UI/Font/CommonFont/NotoSansSC-Medium.ttf"; // 简体中文；SourceHanSansJP 缺很多简体字
 
@@ -203,7 +203,7 @@ namespace Ported.EditorTools
         static GameObject LoadFx(string qqPath, HashSet<string> missing)
         {
             if (string.IsNullOrEmpty(qqPath) || !qqPath.StartsWith("Assets/")) return null;
-            var path = "Assets/Ported/Qq13/" + qqPath.Substring("Assets/".Length);
+            var path = "Assets/Artist/Qq13/" + qqPath.Substring("Assets/".Length);
             var go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
             if (go == null) missing.Add(qqPath);
             return go;
@@ -213,7 +213,7 @@ namespace Ported.EditorTools
 
         static void BuildGameScene(GameObject[] heroPrefabs)
         {
-            Directory.CreateDirectory("Assets/Ported/Scenes");
+            Directory.CreateDirectory("Assets/Scenes");
             if (AssetDatabase.LoadAssetAtPath<SceneAsset>(GameScenePath) != null) AssetDatabase.DeleteAsset(GameScenePath);
             if (!AssetDatabase.CopyAsset(SourceScene, GameScenePath))
                 throw new Exception("复制场景失败: " + SourceScene);
@@ -332,7 +332,7 @@ namespace Ported.EditorTools
             mesh.triangles = tri.indices;
             mesh.RecalculateNormals();
             mesh.RecalculateBounds();
-            const string meshPath = "Assets/Ported/Scenes/Ported_NavGround.asset";
+            const string meshPath = "Assets/Scenes/Ported_NavGround.asset";
             AssetDatabase.DeleteAsset(meshPath);
             AssetDatabase.CreateAsset(mesh, meshPath);
 

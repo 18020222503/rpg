@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Ported
 {
-    // 角色控制：WASD 移动（相对相机），J 连招，U 重击，K/L 技能，I 大招。
+    // 角色控制：WASD 移动（相对相机），Shift 加速跑，左 Ctrl 闪避，空格跳跃，J 连招，U 重击，K/L 技能，I 大招。
     // 技能按原项目的动作配置（HeroActionSet）执行：特效挂点和出现时间、伤害框、子弹、位移、动画变速。
     // 移植来的 Animator Controller 没有参数，状态切换靠 CrossFade 直接按状态名播放。
     [RequireComponent(typeof(CharacterController))]
@@ -18,6 +18,33 @@ namespace Ported
         [Tooltip("按顺序取第一个存在的状态")]
         public string[] idleStates = { "idle", "idle_f" };
         public string[] runStates = { "run_R", "run_f", "run", "walk" };
+        // 移动分三档：run（默认）、dash（按住 Shift）、rush（按住 Shift 持续移动 rushDelay 秒后）。
+        // 某一档的动画找不到时，退回低一档
+        [Tooltip("dash 动画，按顺序取第一个存在的状态")]
+        public string[] dashStates = { "dash_R", "dash_f", "dash_L", "dash" };
+        [Tooltip("dash 的速度倍率")]
+        public float dashMultiplier = 1.35f;
+        [Tooltip("rush 动画，按顺序取第一个存在的状态")]
+        public string[] rushStates = { "rush_R", "rush_f", "rush_L", "rush" };
+        [Tooltip("rush 的速度倍率")]
+        public float rushMultiplier = 1.8f;
+        [Tooltip("按住 Shift 持续移动多少秒后从 dash 升到 rush")]
+        public float rushDelay = 1.5f;
+        public string[] jumpStartStates = { "jump_start", "jump_start_f" };
+        public string[] jumpLoopStates = { "jump_loop", "jump_loop_f" };
+        public string[] jumpEndStates = { "jump_end", "jump_end_f" };
+
+        [Tooltip("起跳初速度（米/秒），重力 -20 时约跳 1.6 米")]
+        public float jumpSpeed = 8f;
+        [Tooltip("落地后播放落地动画的时间，期间开始移动会直接打断")]
+        public float landTime = 0.2f;
+
+        [Tooltip("闪避位移距离（米）")]
+        public float dodgeDistance = 4f;
+        [Tooltip("闪避持续时间（秒），期间不能放技能和起跳")]
+        public float dodgeDuration = 0.25f;
+        [Tooltip("闪避结束后到下次能闪避的间隔（秒）")]
+        public float dodgeCooldown = 0.8f;
 
         public Transform cameraTransform;
         public bool inputEnabled = true;
@@ -27,6 +54,9 @@ namespace Ported
         public Key skill1Key = Key.K;
         public Key skill2Key = Key.L;
         public Key ultimateKey = Key.I;
+        public Key jumpKey = Key.Space;
+        public Key sprintKey = Key.LeftShift;
+        public Key dodgeKey = Key.LeftCtrl;
 
         const float Gravity = -20f;
 
@@ -34,6 +64,13 @@ namespace Ported
         Animator animator;
         float verticalSpeed;
         int currentLoop;
+        bool jumping;
+        float landTimer;
+        bool currentRepeats = true;
+        float sprintTime;
+        float dodgeTimer;
+        float dodgeCooldownTimer;
+        Vector3 dodgeDir;
 
         // 当前动作
         ActionData current;
@@ -81,9 +118,19 @@ namespace Ported
             var kb = inputEnabled ? Keyboard.current : null;
             var moveInput = kb != null ? ReadMove(kb) : Vector2.zero;
 
-            if (kb != null && actions != null && animator != null) HandleSkillInput(kb, moveInput);
+            if (dodgeCooldownTimer > 0f) dodgeCooldownTimer -= Time.deltaTime;
+            var dodging = dodgeTimer > 0f;
+
+            // 空中和闪避期间不能放技能，落地、闪避结束后才行
+            if (kb != null && !jumping && !dodging && actions != null && animator != null) HandleSkillInput(kb, moveInput);
+            if (kb != null && !jumping && !dodging && current == null && controller.isGrounded)
+            {
+                if (kb[dodgeKey].wasPressedThisFrame && dodgeCooldownTimer <= 0f) StartDodge(moveInput);
+                else if (kb[jumpKey].wasPressedThisFrame) StartJump();
+            }
             if (current != null) TickAction(Time.deltaTime);
-            HandleMove(moveInput);
+            var sprint = kb != null && (kb[sprintKey].isPressed || kb.rightShiftKey.isPressed);
+            HandleMove(moveInput, sprint);
         }
 
         // ---------- 输入 ----------
@@ -148,22 +195,93 @@ namespace Ported
             return forward * input.y + right * input.x;
         }
 
-        void HandleMove(Vector2 input)
+        void HandleMove(Vector2 input, bool sprint)
         {
+            var dodging = dodgeTimer > 0f;
             var move = Vector3.zero;
-            if (current == null && input.sqrMagnitude > 0.01f)
+            if (dodging)
+            {
+                // 闪避期间沿起冲方向匀速前进，不受方向键影响
+                move = dodgeDir;
+                dodgeTimer -= Time.deltaTime;
+                if (dodgeTimer <= 0f) dodgeCooldownTimer = dodgeCooldown;
+            }
+            else if (current == null && input.sqrMagnitude > 0.01f)
             {
                 move = CameraRelative(input);
                 if (move.sqrMagnitude > 0.001f)
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), turnSpeed * Time.deltaTime);
             }
 
-            verticalSpeed = controller.isGrounded ? -1f : verticalSpeed + Gravity * Time.deltaTime;
-            var velocity = move * moveSpeed;
+            if (jumping)
+            {
+                verticalSpeed += Gravity * Time.deltaTime;
+                // 起跳那一帧还贴着地面，等开始下落后再检测落地
+                if (verticalSpeed <= 0f && controller.isGrounded) Land();
+            }
+            else
+            {
+                verticalSpeed = controller.isGrounded ? -1f : verticalSpeed + Gravity * Time.deltaTime;
+            }
+            // 档位：闪避期间固定 rush；其余按 Shift 按住并移动的时长决定。松开 Shift 或停下就回到 run
+            var moving = move.sqrMagnitude > 0.01f;
+            if (!dodging) sprintTime = sprint && moving ? sprintTime + Time.deltaTime : 0f;
+            var rushing = dodging || sprintTime >= rushDelay;
+            var dashing = !rushing && sprintTime > 0f;
+
+            var speed = dodging ? dodgeDistance / Mathf.Max(0.05f, dodgeDuration)
+                : rushing ? moveSpeed * rushMultiplier
+                : dashing ? moveSpeed * dashMultiplier
+                : moveSpeed;
+            var velocity = move * speed;
             velocity.y = verticalSpeed;
             controller.Move(velocity * Time.deltaTime);
 
-            if (current == null) PlayLoop(move.sqrMagnitude > 0.01f ? runStates : idleStates);
+            if (current != null) return;
+            if (landTimer > 0f && move.sqrMagnitude > 0.01f) landTimer = 0f;
+
+            if (jumping)
+            {
+                if (verticalSpeed > 0f) PlayLoop(jumpStartStates, false);
+                else PlayLoop(jumpLoopStates);
+            }
+            else if (landTimer > 0f) { landTimer -= Time.deltaTime; PlayLoop(jumpEndStates, false); }
+            else if (moving)
+            {
+                // 没有对应档位的动画就退回低一档
+                var played = rushing && PlayLoop(rushStates);
+                if (!played && (rushing || dashing)) played = PlayLoop(dashStates);
+                if (!played) PlayLoop(runStates);
+            }
+            else PlayLoop(idleStates);
+
+            RepeatLoopIfFinished();
+        }
+
+        // 没有专门的翻滚动画，闪避用加速跑动画加一段短距离位移
+        void StartDodge(Vector2 moveInput)
+        {
+            var dir = moveInput.sqrMagnitude > 0.01f ? CameraRelative(moveInput) : transform.forward;
+            dir = Vector3.ProjectOnPlane(dir, Vector3.up);
+            if (dir.sqrMagnitude < 0.001f) dir = transform.forward;
+            dodgeDir = dir.normalized;
+            transform.rotation = Quaternion.LookRotation(dodgeDir);
+            dodgeTimer = dodgeDuration;
+            landTimer = 0f;
+        }
+
+        void StartJump()
+        {
+            jumping = true;
+            landTimer = 0f;
+            verticalSpeed = jumpSpeed;
+        }
+
+        void Land()
+        {
+            jumping = false;
+            verticalSpeed = -1f;
+            landTimer = landTime;
         }
 
         // ---------- 动作 ----------
@@ -188,6 +306,7 @@ namespace Ported
 
             current = a;
             actionTime = 0f;
+            landTimer = 0f;
             comboQueued = false;
             fired.Clear();
             hitLog.Clear();
@@ -330,18 +449,32 @@ namespace Ported
 
         // ---------- 动画 ----------
 
-        void PlayLoop(string[] candidates)
+        // repeat=false 用于起跳和落地这类只播一次的动画
+        // 返回 true 表示候选里有可用的状态（不论是否刚切换过来）
+        bool PlayLoop(string[] candidates, bool repeat = true)
         {
-            if (animator == null || candidates == null) return;
+            if (animator == null || candidates == null) return false;
             foreach (var c in candidates)
             {
                 if (!Has(c)) continue;
                 var hash = Animator.StringToHash(c);
-                if (hash == currentLoop) return;
+                currentRepeats = repeat;
+                if (hash == currentLoop) return true;
                 currentLoop = hash;
                 animator.CrossFadeInFixedTime(hash, 0.12f);
-                return;
+                return true;
             }
+            return false;
+        }
+
+        // 移植来的跑步、跳跃动画片段没有开 loopTime，播完一遍会停在最后一帧，角色看起来就是在滑动。
+        // 这里在循环状态播完后重新衔接一遍
+        void RepeatLoopIfFinished()
+        {
+            if (animator == null || !currentRepeats || currentLoop == 0 || animator.IsInTransition(0)) return;
+            var info = animator.GetCurrentAnimatorStateInfo(0);
+            if (info.shortNameHash != currentLoop || info.loop || info.normalizedTime < 1f) return;
+            animator.CrossFadeInFixedTime(currentLoop, 0.1f, 0, 0f);
         }
 
         // 角色身上除了身体的 Animator，还有脸部表情（emo_*.controller）等 Animator，要选带待机和攻击状态的那个

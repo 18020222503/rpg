@@ -1,16 +1,11 @@
-#if UNITY_EDITOR
-using UnityEditor.SceneManagement;
-#endif
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameBoot : MonoBehaviour
 {
-    //场景所在的bundle名和场景路径，和打包工具 BuildAssetBundleTool 里的一致
-    public const string EntryBundleName = "entry.ab";
-    const string EntryScenePath = "Assets/Scenes/Entry.unity";
-   
+    // 启动完成后进入的第一个场景，已加入 Build Settings
+    const string LoginSceneName = "Ported_Login";
+
     public BootProgressView view;
 
     // 下载完、程序集加载完，等进度条走满后再切场景
@@ -55,7 +50,7 @@ public class GameBoot : MonoBehaviour
         view.ShowError(error, StartDownload);
     }
 
-    void OnDownloadComplete()
+    void OnDownloadComplete() 
     {
         view.SetProgress(1f);
         view.SetStatus("Loading...");
@@ -70,35 +65,7 @@ public class GameBoot : MonoBehaviour
 
     public void SwitchScene()
     {
-        if (BootConfig.UseBundle)
-        {
-            StartCoroutine(LoadEntryFromAB());
-            return;
-        }
-#if UNITY_EDITOR
-        EditorSceneManager.LoadSceneAsyncInPlayMode(
-            EntryScenePath,
-            new LoadSceneParameters(LoadSceneMode.Single));
-#endif
-    }
-
-    // 场景 bundle 已经由 ProcedureGameUpdate 下载到 BootConfig.CacheDir。
-    // 必须在 Game.dll 加载之后再加载场景，否则场景里的热更脚本会丢失
-    IEnumerator LoadEntryFromAB()
-    {
-        var path = ProcedureGameUpdate.GetLocalPath(EntryBundleName);
-        var request = AssetBundle.LoadFromFileAsync(path);
-        yield return request;
-        if (request.assetBundle == null)
-        {
-            switching = false;
-            view.SetStatus("Load failed");
-            view.ShowError($"加载场景 bundle 失败：{path}", StartDownload);
-            yield break;
-        }
-
-        // 场景 bundle 在场景存活期间不能 Unload(true)，这里不卸载
-        yield return SceneManager.LoadSceneAsync(EntryScenePath, LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync(LoginSceneName, LoadSceneMode.Single);
     }
 
     static string FormatSize(long bytes)
