@@ -11,15 +11,22 @@ using UnityEngine.UI;
 
 namespace Ported.EditorTools
 {
-    // 把移植进来的资源装配成可玩的内容：角色预制体（带技能）、登录场景、游戏场景，并写进 Build Settings。
+    // 把移植进来的资源装配成可玩的内容：角色预制体（带技能）、登录场景、游戏场景。
+    // 两个场景只是编辑用的源文件，不进 Build Settings：最后导出成 GameResource 下的 prefab，运行时由 GameFlow 从 bundle 加载
     public static class PortedBuilder
     {
         const string Art = "Assets/Artist/Qq13/Art/";
         const string HeroDir = Art + "Character/CH_Hero/";
         const string DataDir = "Assets/Ported/Data/";
-        const string OutHeroes = "Assets/Ported/Heroes/";
+        // 角色和特效放在 GameResource 下单独打 bundle，登录和游戏两个 bundle 共用，不会各存一份
+        const string OutHeroes = "Assets/GameResource/Prefab/hero/";
+        const string QqFxRoot = "Assets/Art/FX/";              // 动作数据里记的 qq13 原路径
+        const string FxRoot = "Assets/GameResource/FX/";       // 角色特效 prefab 挪到这里，目录结构不变
         const string GameScenePath = "Assets/Scenes/Ported_Game.unity";
         const string LoginScenePath = "Assets/Scenes/Ported_Login.unity";
+        // 和 GameFlow 里的资源名对应（去掉 Assets/GameResource/ 前缀）
+        const string GamePrefabPath = "Assets/GameResource/Prefab/game/Game.prefab";
+        const string LoginPrefabPath = "Assets/GameResource/Prefab/login/Login.prefab";
         const string SourceScene = "Assets/Scenes/sc_10001002_xcb_lyq.unity";
         const string LoginBg = "Assets/Artist/Qq13/Start/UI/Sprite/bg_dl_01.png";
         const string LoginLogo = "Assets/Artist/Qq13/Start/UI/Sprite/Logo/JP/img_dl_logo.png";
@@ -64,9 +71,8 @@ namespace Ported.EditorTools
                 var prefabs = BuildHeroPrefabs();
                 BuildGameScene(prefabs);
                 BuildLoginScene(prefabs);
-                UpdateBuildSettings();
-                AssetDatabase.SaveAssets();
-                Debug.Log("[PortedBuilder] 完成。登录场景 " + LoginScenePath + "，游戏场景 " + GameScenePath);
+                ExportPrefabs();
+                Debug.Log("[PortedBuilder] 完成。登录 " + LoginPrefabPath + "，游戏 " + GamePrefabPath);
             }
             catch (Exception e)
             {
@@ -200,11 +206,15 @@ namespace Ported.EditorTools
                 if (a != null && a.IsValid) yield return a;
         }
 
+        // 先找挪进 GameResource 的特效，没挪的（新加的角色）再去 Artist 下找
         static GameObject LoadFx(string qqPath, HashSet<string> missing)
         {
             if (string.IsNullOrEmpty(qqPath) || !qqPath.StartsWith("Assets/")) return null;
-            var path = "Assets/Artist/Qq13/" + qqPath.Substring("Assets/".Length);
-            var go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            GameObject go = null;
+            if (qqPath.StartsWith(QqFxRoot))
+                go = AssetDatabase.LoadAssetAtPath<GameObject>(FxRoot + qqPath.Substring(QqFxRoot.Length));
+            if (go == null)
+                go = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Artist/Qq13/" + qqPath.Substring("Assets/".Length));
             if (go == null) missing.Add(qqPath);
             return go;
         }
@@ -672,17 +682,78 @@ namespace Ported.EditorTools
             rt.offsetMax = Vector2.zero;
         }
 
-        // ---------- Build Settings ----------
+        // ---------- 导出 prefab ----------
 
-        static void UpdateBuildSettings()
+        // 只改了场景、没动角色时用这个，不用重跑 Build All
+        [MenuItem("Tools/Ported/Export Prefabs")]
+        public static void ExportPrefabsMenu()
         {
-            var scenes = EditorBuildSettings.scenes.ToList();
-            foreach (var path in new[] { LoginScenePath, GameScenePath })
+            if (EditorApplication.isPlayingOrWillChangePlaymode)
             {
-                if (scenes.Any(s => s.path == path)) continue;
-                scenes.Add(new EditorBuildSettingsScene(path, true));
+                Debug.LogWarning("[PortedBuilder] 播放模式下不能导出，先退出播放");
+                return;
             }
-            EditorBuildSettings.scenes = scenes.ToArray();
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+
+            var setup = EditorSceneManager.GetSceneManagerSetup();
+            try
+            {
+                ExportPrefabs();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("[PortedBuilder] 导出失败: " + e);
+            }
+            finally
+            {
+                // 导出前打开的是未保存的新场景时没有路径，恢复不了
+                if (setup.Length > 0 && setup.All(s => !string.IsNullOrEmpty(s.path)))
+                    EditorSceneManager.RestoreSceneManagerSetup(setup);
+            }
+        }
+
+        static void ExportPrefabs()
+        {
+            ExportPrefab(LoginScenePath, LoginPrefabPath, "Login");
+            ExportPrefab(GameScenePath, GamePrefabPath, "Game");
+            // 导出时只在内存里改了场景层级，不保存，换成空场景丢掉这些改动
+            EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            RemoveFromBuildSettings();
+            AssetDatabase.SaveAssets();
+        }
+
+        // 场景里的根物体全部挂到一个新的根节点下，存成 prefab
+        static void ExportPrefab(string scenePath, string prefabPath, string rootName)
+        {
+            var scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
+            var root = new GameObject(rootName);
+            // 环境光、雾、主光源存在场景上，记到 prefab 上，运行时设回去
+            root.AddComponent<PortedRenderSettings>().Capture();
+
+            foreach (var go in scene.GetRootGameObjects())
+            {
+                if (go == root) continue;
+                // EventSystem 由 Boot 场景提供，prefab 里再带一个就有两个了
+                if (go.GetComponent<EventSystem>() != null)
+                {
+                    UnityEngine.Object.DestroyImmediate(go);
+                    continue;
+                }
+                go.transform.SetParent(root.transform, true);
+            }
+
+            Directory.CreateDirectory(Path.GetDirectoryName(prefabPath));
+            PrefabUtility.SaveAsPrefabAsset(root, prefabPath, out var ok);
+            if (!ok) throw new Exception("保存 prefab 失败: " + prefabPath);
+            Debug.Log($"[PortedBuilder] {scenePath} 导出为 {prefabPath}");
+        }
+
+        // 登录和游戏都从 bundle 加载，Build Settings 里只留 Boot
+        static void RemoveFromBuildSettings()
+        {
+            var scenes = EditorBuildSettings.scenes;
+            var kept = scenes.Where(s => s.path != LoginScenePath && s.path != GameScenePath).ToArray();
+            if (kept.Length != scenes.Length) EditorBuildSettings.scenes = kept;
         }
     }
 

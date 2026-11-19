@@ -1,14 +1,18 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameBoot : MonoBehaviour
 {
-    // 启动完成后进入的第一个场景，已加入 Build Settings
-    const string LoginSceneName = "Ported_Login";
+    // 热更入口，在 Game.dll 里。AOT 代码不能直接引用热更程序集，只能反射调用
+    const string EntryType = "GameEntry";
+    const string EntryMethod = "Start";
 
     public BootProgressView view;
+    [Tooltip("编辑器下是否走 bundle（下载 + 从 bundle 加载）；真机固定走 bundle")]
+    public bool  useAssetBundle;
 
-    // 下载完、程序集加载完，等进度条走满后再切场景
+    bool UseBundle => !Application.isEditor || useAssetBundle;
+
     bool readyToSwitch;
     bool switching;
 
@@ -26,7 +30,7 @@ public class GameBoot : MonoBehaviour
         if (!readyToSwitch || switching || !view.IsFull) return;
 
         switching = true;
-        SwitchScene();
+        EnterHotUpdate();
     }
 
     void StartDownload()
@@ -34,7 +38,7 @@ public class GameBoot : MonoBehaviour
         view.ResetProgress();
         view.SetStatus("Downloading update...");
         view.SetDetail("");
-        StartCoroutine(ProcedureGameUpdate.Instance.Run());
+        StartCoroutine(ProcedureGameUpdate.Instance.Run(UseBundle));
     }
 
     void OnDownloadProgress(float progress, long downloaded, long total)
@@ -55,17 +59,26 @@ public class GameBoot : MonoBehaviour
         view.SetProgress(1f);
         view.SetStatus("Loading...");
 
-        //2.加载 AOT 补充元数据（mscorlib、System、System.Core 的 .dll.bytes）
-
-        //3.Assembly.Load(Game.dll.bytes)
-
-        //4.反射调用热更入口
         ProcedureLoadAssembly.Instance.Load(() => readyToSwitch = true);
     }
 
-    public void SwitchScene()
+    void EnterHotUpdate()
     {
-        SceneManager.LoadSceneAsync(LoginSceneName, LoadSceneMode.Single);
+        var method = ProcedureLoadAssembly.Instance.HotUpdateAss.GetType(EntryType)?.GetMethod(EntryMethod);
+        if (method == null)
+        {
+            view.SetStatus($"Game.dll 里找不到 {EntryType}.{EntryMethod}");
+            return;
+        }
+
+        // Boot 场景里的相机、灯光、进度界面只在启动阶段用，交给热更层前关掉。
+        // EventSystem 留着，后面的界面共用。入口会在这个场景根下新建 GameFlow，所以要先关再调入口
+        foreach (var go in gameObject.scene.GetRootGameObjects())
+        {
+            if (go.GetComponent<EventSystem>() == null) go.SetActive(false);
+        }
+
+        method.Invoke(null, new object[] { UseBundle });
     }
 
     static string FormatSize(long bytes)

@@ -8,6 +8,8 @@ using UnityEditor.Build.Reporting;
 public  static class Build
 {
     const string PCOutputDirName = "Build/PC";
+    //Tools/BuildAB 的输出
+    const string BundleManifestPath = "Assets/AssetBundles/AssetBundles.manifest";
 
     //打 Windows 64 位包，输出到 {项目根目录}/Build/PC/{productName}.exe。
     //CICD 调用：Unity.exe -batchmode -quit -projectPath <path> -executeMethod Build.BuildPC
@@ -37,6 +39,13 @@ public  static class Build
             targetGroup = BuildTargetGroup.Standalone,
             options = BuildOptions.None,
         };
+
+        //包里只有 Boot 场景，登录和游戏的内容都在 bundle 里。开了 Strip Engine Code 时，
+        //只在 bundle 里用到的组件（NavMeshSurface、粒子等）会被裁掉，要把 bundle 清单告诉打包流程
+        if (File.Exists(BundleManifestPath))
+            options.assetBundleManifestPath = BundleManifestPath;
+        else
+            Debug.LogWarning($"[Build] 找不到 {BundleManifestPath}，先执行 Tools/BuildAB，否则 bundle 里的组件可能被裁剪");
 
         BuildSummary summary = BuildPipeline.BuildPlayer(options).summary;
         if (summary.result != BuildResult.Succeeded)

@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 namespace Ported
 {
-    // 放在移植场景里：生成选中的角色、跟随相机和几个练习用的木桩
+    // 放在游戏 prefab 里：生成选中的角色、跟随相机和几个练习用的木桩。
+    // 生成的东西都挂在自己下面，返回登录时随 prefab 一起销毁
     public class PortedGameBootstrap : MonoBehaviour
     {
         public GameObject[] heroPrefabs;
@@ -33,7 +33,7 @@ namespace Ported
             if (heroNames != null && index < heroNames.Length) heroName = heroNames[index];
 
             var pos = FindGround(spawnPoint);
-            var go = Instantiate(heroPrefabs[index], pos, Quaternion.identity);
+            var go = Instantiate(heroPrefabs[index], pos, Quaternion.identity, transform);
             go.name = heroPrefabs[index].name;
             hero = go.GetComponent<HeroController>();
 
@@ -42,6 +42,7 @@ namespace Ported
             {
                 var camGo = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener));
                 camGo.tag = "MainCamera";
+                camGo.transform.SetParent(transform, false);
                 cam = camGo.GetComponent<Camera>();
                 cam.nearClipPlane = 0.1f;
                 cam.farClipPlane = 600f;
@@ -76,6 +77,7 @@ namespace Ported
 
             Debug.LogWarning("[Ported] 出生点下方没有碰撞体，补一块隐形地面");
             var ground = new GameObject("PortedFallbackGround", typeof(BoxCollider));
+            ground.transform.SetParent(transform, false);
             ground.transform.position = new Vector3(from.x, fallbackGroundY - 0.5f, from.z);
             ground.GetComponent<BoxCollider>().size = new Vector3(500f, 1f, 500f);
             return new Vector3(from.x, fallbackGroundY + 0.1f, from.z);
@@ -87,6 +89,7 @@ namespace Ported
             {
                 var dummy = GameObject.CreatePrimitive(PrimitiveType.Capsule);
                 dummy.name = $"Dummy_{i + 1}";
+                dummy.transform.SetParent(transform, false);
                 var p = around + new Vector3((i - 1) * 2.5f, 0f, 5f);
                 // 木桩是 2 米高的胶囊，中心放在地面上方 1 米
                 if (Physics.Raycast(p + Vector3.up * 20f, Vector3.down, out var hit, 60f, ~0, QueryTriggerInteraction.Ignore)) p = hit.point;
@@ -98,7 +101,7 @@ namespace Ported
         void Update()
         {
             var kb = Keyboard.current;
-            if (kb != null && kb.escapeKey.wasPressedThisFrame) SceneManager.LoadScene(PortedSession.LoginScene);
+            if (kb != null && kb.escapeKey.wasPressedThisFrame) PortedSession.BackToLogin?.Invoke();
         }
 
         void OnGUI()

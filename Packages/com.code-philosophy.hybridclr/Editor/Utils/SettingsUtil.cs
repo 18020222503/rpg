@@ -33,7 +33,7 @@ namespace HybridCLR
     public static class SettingsUtil
     {
 
-        private const string HybridCLRDataPath = "Assets/HybridCLR";
+        private const string HybridCLRDataPath = "HybridCLRData";
         private const string CompiledDllOutputDirName = "HotUpdateDlls";
         private const string StripedAotDllOutputDirName = "AssembliesPostIl2CppStrip";
 

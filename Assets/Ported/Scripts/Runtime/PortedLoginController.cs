@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Ported
@@ -325,7 +324,12 @@ namespace Ported
         IEnumerator LoadGame()
         {
             yield return null; // 先让“正在进入”显示出来
-            SceneManager.LoadScene(PortedSession.GameScene);
+            if (PortedSession.EnterGame == null)
+            {
+                Debug.LogError("[Ported] 没有 GameFlow，要从 Boot 场景启动");
+                yield break;
+            }
+            PortedSession.EnterGame();
         }
 
         // ---------- 角色模型 ----------

@@ -1,0 +1,73 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.3.27f1
+CRC: 1641575521
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 88365a64d2968cfdcd71b3d8c03ce5e5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 29546d040b863eafdea6d1a2e0ea61dd
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 55adef24dbd9ccc464ad4fb9d46ce238
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill01.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk04.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/pre_skill_ex_explode_bf.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill01_bullet.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill_ex_explode.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk01.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill02_end.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill02_hit.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill02.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/pre_skill_ex_explode.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill_ex_chixu.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/pre_fx_skill_ex.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_c_Dimian.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_c_xl.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/pre_fx_skill_ex_weapon_01.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk03_dg02.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit00.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/pre_fx_skill02_body.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/pre_fx_atk_air_start_f.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_hit04.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill_ex_F.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk_c.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/skill_ex_xishou.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/pre_fx_setup_loop.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk04_dg01.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk03_dg01.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11001_aocunlin/Prefabs/atk02.prefab
+Dependencies: []

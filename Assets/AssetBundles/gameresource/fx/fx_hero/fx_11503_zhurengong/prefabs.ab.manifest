@@ -1,0 +1,50 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.3.27f1
+CRC: 3879171654
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: acd3783efd722a88855fb81ddb4195ee
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 7e29891a3a69aecc92e972eacc4498ef
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 04615b1442ab9fef518e71dd54b0ac5d
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_H.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_skill02_physic03.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk_c_shoudao.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk02_02.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk01.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk02_01.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk04.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk03.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk04_02.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_atk_c.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_skill01_physic.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_M.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_skill02_physic02.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_Exskill01_physic.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_skill02_physic.prefab
+- Assets/GameResource/FX/FX_Hero/FX_11503_zhurengong/Prefabs/pre_fx_zhurengong_hit_L.prefab
+Dependencies: []

@@ -56,27 +56,60 @@ public static class BuildAssetBundleTool
         AssetDatabase.Refresh();
     }
 
-    // 按所在文件夹命名：Assets/GameResource/prefab/map/a.prefab -> gameresource/prefab/map
-    // 同一文件夹下的文件共用一个标签（Unity 会把 AB 名统一转成小写）
+    // 按所在文件夹命名：Assets/GameResource/prefab/map/a.prefab -> gameresource/prefab/map.ab
+    // 同一文件夹下的文件共用一个标签（Unity 会把 AB 名统一转成小写）。
+    // 带后缀是因为一个文件夹本身有资源、子文件夹也有资源时，不带后缀的 bundle 文件和子文件夹同名，打包会失败
     private static string GenerateBundleNameFromPath(string path)
     {
         string dir = Path.GetDirectoryName(path).Replace("\\", "/");
         if (dir.StartsWith("Assets/"))
             dir = dir.Substring("Assets/".Length);
-        return dir.ToLower();
+        return dir.ToLower() + ".ab";
     }
 
     [MenuItem("Tools/BuildAB", priority = 2)]
     public static void BuildBundles()
     {
+        // 标签不带 .ab 说明还是改名前打的，文件夹和 bundle 会重名，先重新打标签
+        var oldNames = AssetDatabase.GetAllAssetBundleNames().Where(n => !n.EndsWith(".ab")).ToArray();
+        if (oldNames.Length > 0)
+        {
+            Debug.LogError($"[AssetBundle] 有 {oldNames.Length} 个旧标签（如 {oldNames[0]}），请先执行 Tools/CreateABTag");
+            return;
+        }
+
         string assetBundleDirectory = "Assets/AssetBundles";
         if(!Directory.Exists(assetBundleDirectory))
         {
             Directory.CreateDirectory(assetBundleDirectory);
         }
+        DeleteStaleBundles(assetBundleDirectory);
         BuildPipeline.BuildAssetBundles(assetBundleDirectory, 
             BuildAssetBundleOptions.None, 
             BuildTarget.StandaloneWindows);
+    }
+
+    // 删掉输出目录里已经没有对应标签的旧 bundle。BuildAssetBundles 不会自己清，
+    // 旧文件留着会占住新 bundle 要用的文件夹名（比如改名前的 gameresource/fx/fx_hero）
+    static void DeleteStaleBundles(string outDir)
+    {
+        var current = new System.Collections.Generic.HashSet<string>(AssetDatabase.GetAllAssetBundleNames());
+        // 总清单 bundle 的名字和输出目录同名
+        current.Add(Path.GetFileName(outDir));
+
+        foreach (var file in Directory.GetFiles(outDir, "*", SearchOption.AllDirectories))
+        {
+            if (file.EndsWith(".meta") || file.EndsWith(".manifest")) continue;
+            string name = file.Substring(outDir.Length + 1).Replace("\\", "/");
+            if (current.Contains(name)) continue;
+
+            Debug.Log($"[AssetBundle] 删除旧 bundle：{name}");
+            foreach (var path in new[] { file, file + ".meta", file + ".manifest", file + ".manifest.meta" })
+            {
+                if (File.Exists(path)) File.Delete(path);
+            }
+        }
+        AssetDatabase.Refresh();
     }
 
     #endregion

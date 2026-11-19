@@ -16,10 +16,10 @@ public class ProcedureGameUpdate
     public Action onComplete;
 
     // 由调用方用 StartCoroutine 驱动，这个类本身不是 MonoBehaviour
-    public IEnumerator Run()
+    public IEnumerator Run(bool useAssetbundle)
     {
         // 编辑器直读模式：资源直接从工程里加载，不需要下载
-        if (BootConfig.SkipDownload)
+        if (!useAssetbundle)
         {
             onProgress?.Invoke(1f, 0, 0);
             onComplete?.Invoke();

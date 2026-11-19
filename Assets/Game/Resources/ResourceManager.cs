@@ -7,10 +7,13 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-// 资源加载入口。编辑器下由 isAB 决定直读工程资源还是走 bundle，真机固定走 bundle。
+// 资源加载入口。编辑器下由 UseBundle 决定直读工程资源还是走 bundle，真机固定走 bundle。
 // assetName 相对 Assets/GameResource 并带后缀，如 "Prefab/test/test1.prefab"
 public class ResourceManager
 {
+    // 编辑器下设为 false 时直接读工程里的资源，不用先打 bundle；真机上不起作用
+    public bool UseBundle { get; set; } = true;
+
     const string AssetRoot = "Assets/GameResource/";
 
     const string ManifestBundleName = "AssetBundles";
@@ -36,6 +39,9 @@ public class ResourceManager
 
     public void Init()
     {
+#if UNITY_EDITOR
+      if (!UseBundle) return;
+#endif
       var mainfestAb =  AssetBundle.LoadFromFile(Path.Combine(BundleRoot, ManifestBundleName));
       if (mainfestAb== null)
       { 
@@ -56,6 +62,9 @@ public class ResourceManager
     {
         // string assetPath = AssetRoot + assetName;
         Debug.unityLogger.Log(assetName);
+#if UNITY_EDITOR
+        if (!UseBundle) return AssetDatabase.LoadAssetAtPath<T>(AssetRoot + assetName);
+#endif
         if (manifest == null)
         {
             return null;
@@ -88,11 +97,11 @@ public class ResourceManager
         return bundle;
     }
     
-    // 与 CreateABTag 保持一致：bundle 名 = 资源所在文件夹，如 "Prefab/map/Dungeon.prefab" -> "gameresource/prefab/map"
+    // 与 CreateABTag 保持一致：bundle 名 = 资源所在文件夹，如 "Prefab/map/Dungeon.prefab" -> "gameresource/prefab/map.ab"
     static string GetBundleName(string assetName)
     {
         string dir = Path.GetDirectoryName(assetName).Replace("\\", "/");
-        return ("gameresource/" + dir).ToLower();
+        return ("gameresource/" + dir).ToLower() + ".ab";
     }
     
     IEnumerator LoadBundleFileAsync(string bundleName)
