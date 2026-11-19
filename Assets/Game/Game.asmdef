@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "Unity.InputSystem",
-        "Ported.Runtime"
+        "Ported.Runtime",
+        "Common"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

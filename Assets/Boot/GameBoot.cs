@@ -16,8 +16,16 @@ public class GameBoot : MonoBehaviour
     bool readyToSwitch;
     bool switching;
 
+    // StageTimer 的阶段编号
+    int updateStage = -1;
+    int waitStage = -1;
+
     void Start()
     {
+        // 编辑器里这个时间包含编辑器自己的启动和进 Play 模式，没有参考意义，只在打出的包里记
+        if (!Application.isEditor)
+            StageTimer.Add("引擎启动 + 加载 Boot 场景", 0, Time.realtimeSinceStartupAsDouble);
+
         var update = ProcedureGameUpdate.Instance;
         update.onProgress = OnDownloadProgress;
         update.onFailed = OnDownloadFailed;
@@ -30,6 +38,7 @@ public class GameBoot : MonoBehaviour
         if (!readyToSwitch || switching || !view.IsFull) return;
 
         switching = true;
+        StageTimer.End(waitStage);
         EnterHotUpdate();
     }
 
@@ -38,6 +47,7 @@ public class GameBoot : MonoBehaviour
         view.ResetProgress();
         view.SetStatus("Downloading update...");
         view.SetDetail("");
+        updateStage = StageTimer.Begin(UseBundle ? "热更检查和下载" : "热更检查和下载（编辑器直读，跳过）");
         StartCoroutine(ProcedureGameUpdate.Instance.Run(UseBundle));
     }
 
@@ -52,14 +62,21 @@ public class GameBoot : MonoBehaviour
         view.SetStatus("Download failed");
         view.SetDetail("");
         view.ShowError(error, StartDownload);
+        StageTimer.End(updateStage, "失败");
     }
 
     void OnDownloadComplete() 
     {
-        view.SetProgress(1f);
         view.SetStatus("Loading...");
+        StageTimer.End(updateStage);
 
+        var loadStage = StageTimer.Begin("加载 Game.dll");
         ProcedureLoadAssembly.Instance.Load(() => readyToSwitch = true);
+        view.SetProgress(1f);
+        StageTimer.End(loadStage, readyToSwitch ? null : "失败");
+
+        // 进度条是平滑过渡的，下载很快时要等它追上来，这段是纯等待
+        if (readyToSwitch) waitStage = StageTimer.Begin("等进度条走满");
     }
 
     void EnterHotUpdate()
@@ -78,7 +95,9 @@ public class GameBoot : MonoBehaviour
             if (go.GetComponent<EventSystem>() == null) go.SetActive(false);
         }
 
+        var entryStage = StageTimer.Begin("调用热更入口 GameEntry.Start");
         method.Invoke(null, new object[] { UseBundle, BootConfig.CacheDir });
+        StageTimer.End(entryStage);
     }
 
     static string FormatSize(long bytes)

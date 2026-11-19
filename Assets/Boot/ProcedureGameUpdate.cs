@@ -31,9 +31,11 @@ public class ProcedureGameUpdate
         // 1.下载远端清单
         string json = null;
         string error = null;
+        var stage = StageTimer.Begin($"下载 {BundleManifest.FileName}");
         yield return DownloadText(BundleManifest.FileName, (text, err) => { json = text; error = err; });
         if (error != null)
         {
+            StageTimer.End(stage, "失败");
 #if UNITY_EDITOR
             error += "\n请先执行 Tools/BuildAB";
 #endif
@@ -42,6 +44,7 @@ public class ProcedureGameUpdate
         }
 
         var remote = BundleManifest.FromJson(json);
+        StageTimer.End(stage);
         if (remote == null || remote.bundles == null)
         {
             Fail($"{BundleManifest.FileName} 格式不对");
@@ -49,6 +52,7 @@ public class ProcedureGameUpdate
         }
 
         // 2.和本地清单对比，找出需要下载的 bundle
+        stage = StageTimer.Begin("对比本地清单");
         var local = LoadLocalManifest();
         var pending = new List<BundleInfo>();
         long total = 0;
@@ -60,8 +64,10 @@ public class ProcedureGameUpdate
             pending.Add(info);
             total += info.size;
         }
+        StageTimer.End(stage, $"共 {remote.bundles.Count} 个，要下载 {pending.Count} 个");
 
         // 3.逐个下载，每下完一个就更新本地清单，中途失败重试时已下好的不会重复下载
+        stage = StageTimer.Begin($"下载 bundle（{pending.Count} 个，{total / (1024f * 1024f):0.00} MB）");
         long finished = 0;
         foreach (var info in pending)
         {
@@ -74,6 +80,7 @@ public class ProcedureGameUpdate
 
             if (error != null)
             {
+                StageTimer.End(stage, "失败");
                 Fail(error);
                 yield break;
             }
@@ -84,7 +91,8 @@ public class ProcedureGameUpdate
             SaveLocalManifest(local);
         }
 
-        onProgress?.Invoke(1f, total, total);
+        StageTimer.End(stage);
+        onProgress?.Invoke(0.9f, total, total);
         Debug.Log($"热更完成，下载了 {pending.Count} 个 bundle");
         onComplete?.Invoke();
     }

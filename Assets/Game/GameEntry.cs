@@ -9,7 +9,9 @@ public static class GameEntry
     {
         ResourceManager.Instance.UseBundle = useBundle;
         ResourceManager.Instance.BundleRoot = bundleRoot;
+        var stage = StageTimer.Begin(useBundle ? "ResourceManager.Init（加载总清单）" : "ResourceManager.Init（编辑器直读，跳过）");
         ResourceManager.Instance.Init();
+        StageTimer.End(stage);
         new GameObject("GameFlow").AddComponent<GameFlow>();
     }
 }

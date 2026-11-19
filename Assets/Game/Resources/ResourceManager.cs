@@ -76,16 +76,25 @@ public class ResourceManager
         }
     
         var bundleName = GetBundleName(assetName);
-        foreach (var item in manifest.GetAllDependencies(bundleName))
+        var dependencies = manifest.GetAllDependencies(bundleName);
+        int loadedBefore = bundles.Count;
+        var stage = StageTimer.Begin("LoadFromFile");
+        foreach (var item in dependencies)
         {
             LoadBundle(item);
             Debug.Log("depence:"+item);
         }
 
         var bundle = LoadBundle(bundleName);
+        // 已经加载过的 bundle 走缓存，不算在新打开的个数里
+        StageTimer.End(stage, $"依赖 {dependencies.Length} 个，新打开 {bundles.Count - loadedBefore} 个");
         if (bundle == null) return null;
+
         // bundle 内的资源名是完整工程路径
-        return bundle.LoadAsset<T>(AssetRoot + assetName);
+        stage = StageTimer.Begin("LoadAsset");
+        var asset = bundle.LoadAsset<T>(AssetRoot + assetName);
+        StageTimer.End(stage);
+        return asset;
     }
     
     AssetBundle LoadBundle(string bundleName)
