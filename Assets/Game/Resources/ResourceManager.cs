@@ -25,12 +25,16 @@ public class ResourceManager
     readonly Dictionary<string, AssetBundle> bundles = new Dictionary<string, AssetBundle>();
 
 
-    static string BundleRoot
+    // bundle 所在目录，就是 Boot 下载 bundle 的缓存目录（BootConfig.CacheDir），由 GameEntry 传进来。
+    // 热更程序集引用不到 Boot 的代码，所以这里的默认值单独写一份，只给 LoadProfiler 这类直接调用的工具用
+    public string BundleRoot { get; set; } = DefaultBundleRoot;
+
+    static string DefaultBundleRoot
     {
         get
         {
 #if UNITY_EDITOR
-            return Path.Combine(Application.dataPath, "AssetBundles");
+            return Path.Combine(Path.GetDirectoryName(Application.dataPath), "Library", "HotUpdateCache");
 #else
             return Application.persistentDataPath;
 #endif
@@ -42,10 +46,11 @@ public class ResourceManager
 #if UNITY_EDITOR
       if (!UseBundle) return;
 #endif
-      var mainfestAb =  AssetBundle.LoadFromFile(Path.Combine(BundleRoot, ManifestBundleName));
+      var manifestPath = Path.Combine(BundleRoot, ManifestBundleName);
+      var mainfestAb =  AssetBundle.LoadFromFile(manifestPath);
       if (mainfestAb== null)
-      { 
-          Debug.LogError("loadmainfestAB fail");
+      {
+          Debug.LogError($"[Resource] 加载总清单失败：{manifestPath}");
           return;
       }
       manifest = mainfestAb.LoadAsset<AssetBundleManifest>("AssetBundleManifest");

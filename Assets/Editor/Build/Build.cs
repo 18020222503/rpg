@@ -8,8 +8,9 @@ using UnityEditor.Build.Reporting;
 public  static class Build
 {
     const string PCOutputDirName = "Build/PC";
-    //Tools/BuildAB 的输出
-    const string BundleManifestPath = "Assets/AssetBundles/AssetBundles.manifest";
+    const BuildTarget PCTarget = BuildTarget.StandaloneWindows64;
+    //Tools/BuildAB 的输出，总清单的 .manifest 文件和输出目录同名（平台名）
+    static string BundleManifestPath => Path.Combine(BuildAssetBundleTool.GetOutputDir(PCTarget), PCTarget + ".manifest");
 
     //打 Windows 64 位包，输出到 {项目根目录}/Build/PC/{productName}.exe。
     //CICD 调用：Unity.exe -batchmode -quit -projectPath <path> -executeMethod Build.BuildPC
@@ -35,7 +36,7 @@ public  static class Build
         {
             scenes = scenes,
             locationPathName = Path.Combine(outDir, PlayerSettings.productName + ".exe"),
-            target = BuildTarget.StandaloneWindows64,
+            target = PCTarget,
             targetGroup = BuildTargetGroup.Standalone,
             options = BuildOptions.None,
         };

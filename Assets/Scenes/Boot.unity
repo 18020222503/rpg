@@ -1570,7 +1570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameBoot
   view: {fileID: 252564102}
-  useAssetBundle: 0
+  useAssetBundle: 1
 --- !u!1 &928339158
 GameObject:
   m_ObjectHideFlags: 0

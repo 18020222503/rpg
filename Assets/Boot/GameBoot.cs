@@ -78,7 +78,7 @@ public class GameBoot : MonoBehaviour
             if (go.GetComponent<EventSystem>() == null) go.SetActive(false);
         }
 
-        method.Invoke(null, new object[] { UseBundle });
+        method.Invoke(null, new object[] { UseBundle, BootConfig.CacheDir });
     }
 
     static string FormatSize(long bytes)

@@ -27,10 +27,10 @@ public class ProcedureLoadAssembly
     }
 
 
-    //热更dll所在的bundle名，和打包工具 BuildHotUpdateBundle 里的一致
-    public const string DllBundleName = "game.dll.ab";
-    //dll在bundle里的资源路径，打包前它被拷到 Assets/HotUpdateDlls 下
-    const string DllAssetPath = "Assets/HotUpdateDlls/Game.dll.bytes";
+    //热更dll所在的bundle名。和其他资源一样按目录命名：Assets/GameResource/Dll -> gameresource/dll.ab
+    public const string DllBundleName = "gameresource/dll.ab";
+    //dll在bundle里的资源路径，Tools/Hotdate/GenerateHotUpdateDll 把它拷到 Assets/GameResource/Dll 下
+    const string DllAssetPath = "Assets/GameResource/Dll/Game.dll.bytes";
 
     public Assembly HotUpdateAss { get; private set; }
 
@@ -39,7 +39,7 @@ public class ProcedureLoadAssembly
         if (HotUpdateAss != null) return;
 
 #if !UNITY_EDITOR
-        var bundlePath = Path.Combine(Application.persistentDataPath, DllBundleName);
+        var bundlePath = ProcedureGameUpdate.GetLocalPath(DllBundleName);
         var bundle = AssetBundle.LoadFromFile(bundlePath);
         if (bundle == null)
         {

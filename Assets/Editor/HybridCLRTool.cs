@@ -36,5 +36,26 @@ public class HybridCLRTool
 
         MethodBridgeGeneratorCommand.GenerateMethodBridgeAndReversePInvokeWrapper(target);
         AOTReferenceGeneratorCommand.GenerateAOTGenericReference(target);
+        
+        //生成的game.dll跟Asset目录同级叫HybridCLRData，拷贝Game.dll到Assets/GameResource/Dll 目录下，同时修改名字为Game.dll.bytes
+        CopyHotUpdateDll(target);
+    }
+
+    const string DllAssetDir = "Assets/GameResource/Dll";
+
+    //Unity 不认 .dll 当普通资源，改成 .bytes 后会导入成 TextAsset，才能打进 bundle
+    static void CopyHotUpdateDll(BuildTarget target)
+    {
+        string srcPath = $"{SettingsUtil.GetHotUpdateDllsOutputDirByTarget(target)}/Game.dll";
+        if (!File.Exists(srcPath))
+        {
+            throw new BuildFailedException($"找不到 {srcPath}，热更 dll 编译失败");
+        }
+
+        Directory.CreateDirectory(DllAssetDir);
+        string dstPath = $"{DllAssetDir}/Game.dll.bytes";
+        File.Copy(srcPath, dstPath, true);
+        AssetDatabase.ImportAsset(dstPath);
+        Debug.Log($"[HybridCLR] 已拷贝 {srcPath} -> {dstPath}");
     }
 }

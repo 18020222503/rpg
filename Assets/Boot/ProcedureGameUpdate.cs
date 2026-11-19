@@ -35,7 +35,7 @@ public class ProcedureGameUpdate
         if (error != null)
         {
 #if UNITY_EDITOR
-            error += "\n请先执行 Tools/Hotdate/BuildHotUpdateBundle";
+            error += "\n请先执行 Tools/BuildAB";
 #endif
             Fail(error);
             yield break;
@@ -122,6 +122,8 @@ public class ProcedureGameUpdate
         // 先下载到临时文件，完整下完再替换，中途失败不会破坏上一次下好的 bundle
         var tempPath = savePath + ".tmp";
         if (File.Exists(tempPath)) File.Delete(tempPath);
+        // bundle 名带目录（如 gameresource/dll.ab），先建好子目录
+        Directory.CreateDirectory(Path.GetDirectoryName(savePath));
 
         using (var req = UnityWebRequest.Get(url))
         {
